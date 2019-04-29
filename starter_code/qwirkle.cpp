@@ -8,7 +8,11 @@
 //declaring proto-type function
 void mainMenu();
 
-int main(void) {
+//global vars
+int playerInput = 0;
+
+int main(void)
+{
    LinkedList* list = new LinkedList();
    delete list;
 
@@ -33,5 +37,31 @@ void mainMenu()
   std::cout << "3. Show student information " << std::endl;
   std::cout << "4. Exit " << std::endl;
   std::cout << "\n";
+
+  //read playerInput
+  std::cout << "Enter: ";
+  std::cin >> playerInput;
+
+  //create do-while loop for user input
+  do
+  {
+    if(playerInput = 1)
+    {
+
+    }
+    else if(playerInput = 2)
+    {
+
+    }
+    else if(playerInput = 3)
+    {
+
+    }
+    else
+    {
+
+    }
+  }
+  while(playerInput != 4);
 
 }
