@@ -11,5 +11,12 @@ int main(void) {
 
    std::cout << "TODO: Implement Qwirkle!" << std::endl;
 
+   mainMenu();
+
    return EXIT_SUCCESS;
+}
+
+public void mainMenu()
+{
+  std::cout << "Welcome to the jungle!" << std::endl;
 }
