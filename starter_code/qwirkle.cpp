@@ -35,5 +35,7 @@ void mainMenu()
   std::cout << "3. Show student information " << std::endl;
   std::cout << "4. Exit " << std::endl;
   std::cout << "\n";
+  
+  // test from PC
 
 }
