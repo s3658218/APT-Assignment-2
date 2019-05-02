@@ -6,6 +6,11 @@
 
 #define EXIT_SUCCESS    0
 
+//define namespaces
+using std::string;
+using std::cout;
+using std::endl;
+
 //declaring proto-type function
 void mainMenu();
 
@@ -47,15 +52,15 @@ void mainMenu()
     std::cout << "Enter Input: ";
     std::cin >> playerInput;
 
-    if(playerInput = 1)
+    if(playerInput == 1)
     {
       newGame();
     }
-    else if(playerInput = 2)
+    else if(playerInput == 2)
     {
       loadGame();
     }
-    else if(playerInput = 3)
+    else if(playerInput == 3)
     {
       studentInfo();
     }
