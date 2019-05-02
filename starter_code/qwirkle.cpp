@@ -3,25 +3,26 @@
 
 #include <iostream>
 
-#define EXIT_SUCCESS    0
+#define EXIT_SUCCESS 0
 
 //declaring proto-type function
 void mainMenu();
 
-int main(void) {
-   LinkedList* list = new LinkedList();
-   delete list;
+int main(void)
+{
+  LinkedList *list = new LinkedList();
+  delete list;
 
-   std::cout << "TODO: Implement Qwirkle!" << std::endl;
+  std::cout << "TODO: Implement Qwirkle!" << std::endl;
 
-   //calling mainMenu function when program starts
-   mainMenu();
+  //calling mainMenu function when program starts
+  mainMenu();
 
-   return EXIT_SUCCESS;
+  return EXIT_SUCCESS;
 }
 
-public void mainMenu()
-void mainMenu()
+public
+void mainMenu() void mainMenu()
 {
   std::cout << "Welcome to the jungle!" << std::endl;
   std::cout << "Welcome to Qwirkle!" << std::endl;
@@ -35,7 +36,5 @@ void mainMenu()
   std::cout << "3. Show student information " << std::endl;
   std::cout << "4. Exit " << std::endl;
   std::cout << "\n";
-  
-  // test from PC
 
-}
+  // test from PC
