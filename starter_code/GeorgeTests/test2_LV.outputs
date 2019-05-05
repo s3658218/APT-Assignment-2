@@ -1,1 +1,79 @@
 // winning qwirkle example
+
+Ben, it's your turn.
+
+Score for Ben: 4
+Score for Jerry: 3
+
+   0  1  2  3  4  5
+---------------------
+A |  |  |  |  |  |  |
+B |  |  |  |G5|  |  |
+C |  |  |O1|O5|  |  |
+D |  |  |B1|  |  |  |
+E |Y1|R1|P1|  |  |  | // current board, close to achieving a "qwirkle"
+F |  |  |  |  |  |  |
+
+Your hand is:
+Y4,P6,G1,G3,O1,R2 // Ben placed O1 at E3, end of test turn 1
+
+   0  1  2  3  4  5
+---------------------
+A |  |  |  |  |  |  |
+B |  |  |  |G5|  |  |
+C |  |  |O1|O5|  |  |
+D |  |  |B1|  |  |  |
+E |Y1|R1|P1|O1|  |  | // the board after turn 1, O1 is added
+F |  |  |  |  |  |  |
+
+Jerry, it's your turn.
+
+Score for Ben: 5
+Score for Jerry: 3
+
+   0  1  2  3  4  5
+---------------------
+A |  |  |  |  |  |  |
+B |  |  |  |G5|  |  |
+C |  |  |O1|O5|  |  |
+D |  |  |B1|  |  |  |
+E |Y1|R1|P1|O1|  |  |
+F |  |  |  |  |  |  |
+
+Your hand is:
+P3,R5,B2,B1,B5,Y6 // Jerry placed B1 at E4, end of test turn 2
+
+   0  1  2  3  4  5
+---------------------
+A |  |  |  |  |  |  |
+B |  |  |  |G5|  |  |
+C |  |  |O1|O5|  |  |
+D |  |  |B1|  |  |  |
+E |Y1|R1|P1|O1|B1|  | // the board after turn 2, B1 is added
+F |  |  |  |  |  |  |
+
+Ben, it's your turn.
+
+Score for Ben: 5
+Score for Jerry: 4
+
+   0  1  2  3  4  5
+---------------------
+A |  |  |  |  |  |  |
+B |  |  |  |G5|  |  |
+C |  |  |O1|O5|  |  |
+D |  |  |B1|  |  |  |
+E |Y1|R1|P1|O1|B1|  |
+F |  |  |  |  |  |  |
+
+Your hand is:
+Y4,P6,G1,G3,G5,R2 // Ben placed G1 at E5, end of test turn 3, game won
+
+   0  1  2  3  4  5
+---------------------
+A |  |  |  |  |  |  |
+B |  |  |  |G5|  |  |
+C |  |  |O1|O5|  |  |
+D |  |  |B1|  |  |  |
+E |Y1|R1|P1|O1|B1|G1| // qwirkle achieved and Ben has won
+F |  |  |  |  |  |  |
