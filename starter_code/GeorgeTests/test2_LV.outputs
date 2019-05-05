@@ -1,19 +1,66 @@
+// mid game example
+
 John, it's your turn.
 
-Score for John:  0
-Score for Tyler: 0
+Score for John:  6
+Score for Tyler: 9
+
    0  1  2  3  4  5
-  --------------------
-A |  |  |  |  |  |  |
-B |  |  |  |  |  |  |
-C |  |  |  |  |  |  |
-D |  |  |  |  |  |  |
+---------------------
+A |  |  |  |  |Y4|Y1|
+B |B5|B1|  |O3|Y3|  |
+C |  |B5|Y5|O5|  |  |
+D |  |  |B5|  |  |  | // current board after multiple turns
 E |  |  |  |  |  |  |
 F |  |  |  |  |  |  |
 
 Your hand is:
-R3,G6,B2,G3,P1,P4
+B2,G6,G5,G3,P1,P4 // John placed G5 at E2, end of test turn 1
 
-Tyler it's your turn.
-Score
-// test
+   0  1  2  3  4  5
+---------------------
+A |  |  |  |  |Y4|Y1|
+B |B5|B1|  |O3|Y3|  |
+C |  |B5|Y5|O5|  |  |
+D |  |  |B5|  |  |  |
+E |  |  |G5|  |  |  | // the board after turn 1, G5 is added
+F |  |  |  |  |  |  |
+
+Bob it's your turn.
+
+Score for John: 7 // score changes because of John's turn
+Score for Bob: 9
+
+   0  1  2  3  4  5
+---------------------
+A |  |  |  |  |Y4|Y1|
+B |B5|B1|  |O3|Y3|  |
+C |  |B5|Y5|O5|  |  |
+D |  |  |B5|  |  |  |
+E |  |  |G5|  |  |  |
+F |  |  |  |  |  |  |
+
+Your hand is:
+B1,Y1,Y3,G2,B6,G4 // Bob
+
+   0  1  2  3  4  5
+---------------------
+A |B1|  |  |  |Y4|Y1| // the board after turn 2, B1 is added
+B |B5|B1|  |O3|Y3|  |
+C |  |B5|Y5|O5|  |  |
+D |  |  |B5|  |  |  |
+E |  |  |G5|  |  |  |
+F |  |  |  |  |  |  |
+
+John, it's your turn.
+Score for John:  7
+Score for Tyler: 10
+
+   0  1  2  3  4  5
+---------------------
+A |B1|  |  |  |Y4|Y1|
+B |B5|B1|  |O3|Y3|  |
+C |  |B5|Y5|O5|  |  |
+D |  |  |B5|  |  |  |
+E |  |  |G5|G3|  |  | // the board after turn 2, G3 is added
+F |  |  |  |  |  |  |

@@ -1,5 +1,9 @@
-John
-Tyler
-place R3 at C2
+John // 1st name imputed
 
-//test
+Bob // 2nd name imputed
+
+place G5 at E2 // 1st recorded turns action
+
+place B1 at A0 // 2nd recorded turns action
+
+place G3 at E3 // 3rd recorded turns action
