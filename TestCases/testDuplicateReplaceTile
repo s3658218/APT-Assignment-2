@@ -1,0 +1,35 @@
+A, it's your turn
+Score for A: 5
+Score for B: 3
+    0  1  2  3  4  5
+  -------------------
+A |  |  |  |  |  |  |
+B |  |  |G4|  |  |  |
+C |  |  |B4|  |  |  |
+D |  |  |R4|  |  |  |
+E |  |  |  |  |  |  |
+F |  |  |  |  |  |  |
+
+Your hand is
+Y2,B3,R3,G2,R6,P3
+
+Your hand is now
+Y2,B3,R3,G2,R6,O2
+
+B, it's your turn
+Score for A: 5
+Score for B: 3
+    0  1  2  3  4  5
+  -------------------
+A |  |  |  |  |  |  |
+B |  |  |G4|  |  |  |
+C |  |  |B4|  |  |  |
+D |  |  |R4|  |  |  |
+E |  |  |  |  |  |  |
+F |  |  |  |  |  |  |
+
+Your hand is
+G3,B2,O3,B2,P6,G1
+
+Your hand is now
+G3,P6,O3,B2,P6,G1
