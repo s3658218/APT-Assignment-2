@@ -1,4 +1,6 @@
   #include <iostream>
+  //include player file
+  #include "Player.h"
 
   using std::string;
   using std::cout;
@@ -15,7 +17,6 @@
 
     std::cout << "Enter a name for player 1 " << std::endl;
     //std::cin >> player1;
-
 
   }
 
