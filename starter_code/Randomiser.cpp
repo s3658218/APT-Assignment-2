@@ -11,9 +11,21 @@ class Node{
 //Function that will iterate through the loop and print the values
 void printList(Node *n){
     while (n != NULL){
-        cout << n->data << "";
+        cout << n->data << "" << std::endl;
         n = n -> next;
     }
+}
+void shuffleBag(Node *n){
+    int min = 1;
+    int max = 3;
+    std::random_device engine;
+    std::uniform_int_distribution<int> uniform_dist(min, max);
+    for (int i = 0; i < 3; i++){
+        while (n != NULL){
+        std::swap(n -> data, n -> next -> data);
+        n = n-> next;
+    }
+ }
 }
 //Assigning values to the linked list
 int main() {
@@ -33,8 +45,8 @@ int main() {
     third -> next = NULL;
     //Calling the print function with head being the first n value
     printList(head);
+    shuffleBag(head);
+    printList(head);
     return 0;
 }
-void shuffleBag(Node *n){
 
-}
