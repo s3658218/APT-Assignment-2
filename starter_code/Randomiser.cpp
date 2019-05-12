@@ -20,13 +20,20 @@ void shuffleBag(Node *n){
     int max = 3;
     std::random_device engine;
     std::uniform_int_distribution<int> uniform_dist(min, max);
+    int shuffleArray[3];
     for (int i = 0; i < 3; i++){
-        while (n != NULL){
-        std::swap(n -> data, n -> next -> data);
-        n = n-> next;
+       if (n != NULL){
+           shuffleArray[i] = n -> data;
+           n = n -> next;
+       } 
+    }
+    for (int i = 0; i < 3; i++){
+        int r = rand() % 3;
+        int shuffle = shuffleArray[i];
+        shuffleArray[i] = shuffleArray[r];
+        shuffleArray[r] = shuffle;
     }
  }
-}
 //Assigning values to the linked list
 int main() {
     Node* head = NULL;
