@@ -16,22 +16,44 @@ void printList(Node *n){
     }
 }
 void shuffleBag(Node *n){
-    int min = 1;
-    int max = 3;
-    std::random_device engine;
-    std::uniform_int_distribution<int> uniform_dist(min, max);
+    //creating an array to temp store linkedlist values
     int shuffleArray[3];
+    //setting a point to the head of the linkedlist
+    Node *backtoHead;
+    //storing head
+    backtoHead = n;
+    //creating a random seed
+    std::random_device engine;
+    //settiing the range to meet the length of the array
+    int min = 0;
+    int max = 2;
+    std::uniform_int_distribution<int> uniform_dist(min,max);
+    //storing linkedlist data into the array
     for (int i = 0; i < 3; i++){
        if (n != NULL){
            shuffleArray[i] = n -> data;
            n = n -> next;
        } 
     }
+    //shuffle method
     for (int i = 0; i < 3; i++){
-        int r = rand() % 3;
+        //gets a random position between 0 - 2 and stores it
+        int r = uniform_dist(engine);
+        //storing the i into a temp location
         int shuffle = shuffleArray[i];
+        //swapping i with the random position
         shuffleArray[i] = shuffleArray[r];
+        //swapping the random position with the temp value
         shuffleArray[r] = shuffle;
+    }
+    //setting it back to the head
+    n = backtoHead;
+    //storing the array into the linked list
+    for (int i = 0; i < 3; i++){
+        if (n != NULL){
+            n -> data = shuffleArray[i];
+            n = n-> next;
+        }
     }
  }
 //Assigning values to the linked list
