@@ -1,5 +1,6 @@
   #include <iostream>
   #include "GameMenu.h"
+  #include <typeinfo>
 
   using std::string;
   using std::cout;
@@ -32,8 +33,11 @@ void mainMenu()
     //read playerInput
     cout << "Enter Input: ";
     cin >> playerInput;
-
-    if(playerInput == 1)
+    if (typeid(playerInput) != typeid(int)) {
+      cout << endl;
+      cout << "~~~PLEASE ENTER A CORRECT VALUE!~~~" << endl;
+    }
+     else if(playerInput == 1)
     {
       newGame();
     }
