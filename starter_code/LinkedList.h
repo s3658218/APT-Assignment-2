@@ -3,7 +3,6 @@
 #define ASSIGN2_LINKEDLIST_H
 
 #include "Node.h"
-
 class LinkedList {
 public:
 
@@ -11,7 +10,11 @@ public:
    ~LinkedList();
 
 private:
-   Node* head;
+
+ // Node* headBag;
+  // Node* tailBag;
+   //Node* headHand;
+   //Node* tailHand;
 };
 
 #endif // ASSIGN2_LINKEDLIST_H
