@@ -2,15 +2,22 @@
   #include <string>
   #include "GameMenu.h"
 
+  //output stream required when writing to a file
+  #include <fstream>
+
   using std::string;
   using std::cout;
   using std::endl;
   using std::cin;
+  //output stream required when writing to a file
+  using std::ofstream;
 
 int playerInput;
 std::string player1;
 std::string player2;
 bool endLoop;
+
+void baseGameplay();
 
 void mainMenu()
 {
@@ -68,9 +75,14 @@ void newGame() { // need to do: validation check for numbers or symbols
   cout << "Player 1 is: " << player1 << endl;
   cout << "Player 2 is: " << player2 << endl;
   cout << "Let's Play!";
+
+  //call function
+  std::cout << endl;
+  baseGameplay();
 }
 
-void loadGame() {
+void loadGame() 
+{
   cout << "Enter the filename from which load a game" << endl;
 }
 
@@ -94,3 +106,60 @@ void exitProgram() {
   cout << "Goodbye" << endl;
   endLoop = true;
 }
+
+
+void baseGameplay()
+{
+  //string that the user enters
+  std::string playerInput;
+
+  std::cout << player1 << ", it's your turn " << std::endl;
+  std::cout << endl;
+  std::cout << "Score for " << player1 << ": " << "PLAYER 1 SCORE VAR" << endl;
+  std::cout << "Score for " << player2 << ": " << "PLAYER 2 SCORE VAR" << endl;
+  std::cout << endl;
+  std::cout << "   0  1  2  3  4  5" << endl;
+  std::cout << " --------------------" << endl;
+  std::cout << "A |  |  |  |  |  |  |" << endl;
+  std::cout << "B |  |  |  |  |  |  |" << endl;
+  std::cout << "C |  |  |  |  |  |  |" << endl;
+  std::cout << "D |  |  |  |  |  |  |" << endl;
+  std::cout << "E |  |  |  |  |  |  |" << endl;
+  std::cout << "F |  |  |  |  |  |  |" << endl;
+  std::cout << endl;
+  std::cout << "Your hand is: " << endl;
+  std::cout << "PLAYER 1 TILES " << endl;
+  std::cout << endl;
+
+  //input from user
+  std::cout << "> ";
+  std::cin >> playerInput;
+
+  if(playerInput == "save")
+  {
+    std::string saveFile("saveFile.txt");
+    std::ofstream outFile;
+    outFile.open(saveFile);
+    //what gets printed inside the file
+    outFile << player1 << std::endl;
+    outFile << "player1 SCORE " << std::endl;
+    outFile << "player1 HAND " << std::endl;
+    outFile << player2 << std::endl;
+    outFile << "player2 SCORE " << std::endl;
+    outFile << "player2 SCORE " << std::endl;
+    outFile << "WHOLE MAP/BOARD " << std::endl;
+    outFile << "TILE BAG CONTENTS " << std::endl;
+    outFile << "CURRENT PLAYER NAME " << std::endl;
+    outFile.close();
+
+    std::cout << "Game saved successfully ";
+  }
+  else
+  {
+    std::cout << "NOPE ";
+  }
+  
+
+}
+
+

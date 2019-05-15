@@ -1,6 +1,7 @@
 
 #include "LinkedList.h"
 #include "GameMenu.h"
+//dont include "GameMenu.cpp" when running on server
 #include "GameMenu.cpp"
 
 #include <iostream>
@@ -14,6 +15,7 @@ using std::endl;
 
 //declaring proto-type function
 void mainMenu();
+
 
 int main(void)
 {

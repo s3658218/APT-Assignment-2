@@ -1,0 +1,9 @@
+a
+player1 SCORE 
+player1 HAND 
+b
+player2 SCORE 
+player2 SCORE 
+WHOLE MAP/BOARD 
+TILE BAG CONTENTS 
+CURRENT PLAYER NAME 
