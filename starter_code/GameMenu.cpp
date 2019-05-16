@@ -1,5 +1,6 @@
   #include <iostream>
   #include "GameMenu.h"
+  #include "Tile.h"
 
   using std::string;
   using std::cout;
@@ -58,7 +59,8 @@ void mainMenu()
 }
 
 void newGame() { // need to do: validation check for numbers or symbols
-  cout << "Starting a New Game\n" << endl;
+  cout << "Starting a New Game" << endl;
+  cout << endl;
   cout << "Enter a name for player 1 (uppercase characters only)" << endl;
   cin >> player1;
   cout << "Enter a name for Player 2 (uppercase characters only)" << endl;
@@ -67,6 +69,10 @@ void newGame() { // need to do: validation check for numbers or symbols
   cout << "Player 1 is: " << player1 << endl;
   cout << "Player 2 is: " << player2 << endl;
   cout << "Let's Play!";
+
+  //Tile bagTiles[71];
+  //Tile::createTiles(bagTiles);
+  //Tile::printTileBag(bagTiles);
 }
 
 void loadGame() {
@@ -76,15 +82,15 @@ void loadGame() {
 void studentInfo() {
     cout << "Name: George Korovinis" << endl;
     cout << "Student ID: s3658218" << endl;
-    cout << "Email: s3658218@student.rmit.edu.au\n" << endl;
-
+    cout << "Email: s3658218@student.rmit.edu.au" << endl;
+    cout << endl;
     cout << "Name: Tylar Lariba-Taing" << endl;
     cout << "Student ID: s3604139" << endl;
-    cout << "Email: s3604139@student.rmit.edu.au\n" << endl;
-
+    cout << "Email: s3604139@student.rmit.edu.au" << endl;
+    cout << endl;
     cout << "Name: Lorenzo Vossos" << endl;
     cout << "Student ID: s3792797" << endl;
-    cout << "Email: s3792797@student.rmit.edu.au\n" << endl;
+    cout << "Email: s3792797@student.rmit.edu.au" << endl;
     cout << endl;
 
 }
