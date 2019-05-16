@@ -17,8 +17,8 @@ public:
 
 class TileFunction{
    public:
-   void createTiles(Tile tiles[71]);
-   void printTileBag(Tile tileBag[71]);
+   void createTiles(Tile tiles[72]);
+   void printTileBag(Tile tileBag[72]);
 };
 
 #endif // ASSIGN2_TILE_H

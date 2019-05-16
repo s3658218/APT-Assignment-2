@@ -3,7 +3,7 @@
 #include "TileCodes.h"
 #include <iostream>
 
-void TileFunction::createTiles(Tile tiles[71]){
+void TileFunction::createTiles(Tile tiles[72]){
     int currentTile = 0;
     for (int i = 0; i < 6; i++){
         for (int j = 1; j < 7; j++){
@@ -32,7 +32,7 @@ void TileFunction::createTiles(Tile tiles[71]){
         }
     }
 }
-void TileFunction::printTileBag(Tile tileBag[71]){
+void TileFunction::printTileBag(Tile tileBag[72]){
     for (int i = 0; i < 72; i++){
         std::cout << tileBag[i].colour << tileBag[i].shape << std::endl;
         if ((i + 1)% 12 == 0){
