@@ -1,15 +1,23 @@
   #include <iostream>
   #include "GameMenu.h"
+  #include "Board.h"
+  #include "Player.h"
 
   using std::string;
   using std::cout;
   using std::endl;
   using std::cin;
 
-int playerInput;
-std::string player1;
-std::string player2;
+string stringInput1;
+string stringInput2;
 bool endLoop;
+bool endGameplay;
+bool currentGame;
+int player1Score = 0;
+int player2Score = 0;
+string player1;
+string player2;
+string currentPlayer;
 
 void mainMenu()
 {
@@ -31,21 +39,21 @@ void mainMenu()
 
     //read playerInput
     cout << "Enter Input: ";
-    cin >> playerInput;
+    cin >> stringInput1;
 
-    if(playerInput == 1)
+    if(stringInput1 == "1")
     {
       newGame();
     }
-    else if(playerInput == 2)
+    else if(stringInput1 == "2")
     {
       loadGame();
     }
-    else if(playerInput == 3)
+    else if(stringInput1 == "3")
     {
       studentInfo();
     }
-    else if (playerInput == 4)
+    else if (stringInput1 == "4")
     {
       exitProgram();
     } else {
@@ -66,7 +74,51 @@ void newGame() { // need to do: validation check for numbers or symbols
   cout << endl;
   cout << "Player 1 is: " << player1 << endl;
   cout << "Player 2 is: " << player2 << endl;
-  cout << "Let's Play!";
+  currentPlayer = player1;
+  cout << "Let's Play!" << endl;
+  cout << endl;
+
+  continueGameplay();
+}
+
+void continueGameplay() {
+  do {
+    cout << "Current Player: " << currentPlayer << endl;
+    cout << player1 << "'s Score: " << player1Score << endl;
+    cout << player2 << "'s Score: " << player2Score << endl;
+    cout << "-----------------------" << endl;
+    cout << endl;
+    cout << "Options" << endl;
+    cout << "1: Place a tile onto the board" << endl;
+    cout << "2: Replace a tile in your hand" << endl;
+    cout << "3: Save the game to a file" << endl;
+    cout << "4: Quit the game" << endl;
+    cout << "Enter Input: " << endl;
+    cin >> stringInput2;
+
+    if(stringInput2 == "1")
+    {
+      placeTileOntoBoard();
+    }
+    else if(stringInput2 == "2")
+    {
+      replaceTileInHand();
+    }
+    else if(stringInput2 == "3")
+    {
+      saveCurrentGame();
+    }
+    else if (stringInput2 == "4")
+    {
+      exitTheProgram();
+    } else {
+      cout << endl;
+      cout << "~~~PLEASE ENTER A CORRECT VALUE!~~~" << endl;
+      cout << endl;
+    }
+
+  } while(endGameplay == false);
+
 }
 
 void loadGame() {
@@ -92,4 +144,44 @@ void studentInfo() {
 void exitProgram() {
   cout << "Goodbye" << endl;
   endLoop = true;
+}
+
+void placeTileOntoBoard() {
+  displayBoard();
+  testBoard();
+  switchName();
+  updateScore();
+}
+
+void replaceTileInHand() {
+  cout << "REPLACING TILE IN HAND" << endl;
+  switchName();
+  cout << "~~~~~~~~~~~~~~~~~~~~~~" << endl;
+}
+
+void saveCurrentGame() {
+  cout << "SAVING THE CURRENT GAME" << endl;
+  cout << "~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+}
+
+void exitTheProgram() {
+  cout << "Goodbye" << endl;
+  endGameplay = true;
+}
+
+void switchName() {
+  if (currentPlayer == player1) {
+    currentPlayer = player2;
+  }
+  else {
+    currentPlayer = player1;
+  }
+}
+
+void updateScore() { // needs fixing
+  if (currentPlayer == player1) {
+    player2Score = player2Score + 1;
+  } else {
+    player1Score = player1Score + 1;
+  }
 }
