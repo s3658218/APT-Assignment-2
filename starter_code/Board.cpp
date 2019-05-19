@@ -46,13 +46,13 @@ void testBoard() {
 
   testArray[tileLocationY][tileLocationX] = tileType;
 
-  cout << "AFTER RESULTS" << endl << endl;
+  //cout << "AFTER RESULTS" << endl << endl;
 
-  for (unsigned int i = 0; i < 6; i++) {
-    cout << endl;
-      for (unsigned int j = 0; j < 6; j++) {
-          cout << "|" <<testArray[i][j] << "|";
-      }
-  }
+  //for (unsigned int i = 0; i < 6; i++) {
+    //cout << endl;
+      //for (unsigned int j = 0; j < 6; j++) {
+          //cout << "|" <<testArray[i][j] << "|";
+      //}
+  //}
   cout << endl;
 }

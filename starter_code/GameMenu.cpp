@@ -58,9 +58,12 @@ void mainMenu()
     else if (stringInput1 == "4")
     {
       exitProgram();
+    }
+    else if(stringInput1 == "^D") {
+      exitProgram();
     } else {
       cout << endl;
-      cout << "~~~PLEASE ENTER A CORRECT VALUE!~~~" << endl;
+      cout << "Invalid Input" << endl;
     }
   }
   while(endLoop == false);
@@ -91,6 +94,8 @@ void continueGameplay() {
     cout << currentPlayer << ", it's your turn" << endl;
     cout << "Score for " << player1 << ": " << player1Score << endl;
     cout << "Score for " << player2 << ": " << player2Score << endl;
+    cout << "BOARD" << endl;
+    displayBoard();
     cout << "-----------------------" << endl;
     cout << endl;
     cout << "Options" << endl;
@@ -116,9 +121,11 @@ void continueGameplay() {
     else if (stringInput2 == "4")
     {
       exitTheProgram();
+    } else if (stringInput2 == "^D") {
+      exitTheProgram();
     } else {
       cout << endl;
-      cout << "~~~PLEASE ENTER A CORRECT VALUE!~~~" << endl;
+      cout << "Invalid Input" << endl;
       cout << endl;
     }
 
@@ -152,7 +159,6 @@ void exitProgram() {
 }
 
 void placeTileOntoBoard() {
-  displayBoard();
   testBoard();
   switchName();
   updateScore();
