@@ -34,7 +34,7 @@ void displayBoard() {
 
 
 void testBoard() {
-  cout << "It's your turn! Which tile would you like to place?" << endl;
+  cout << "Which tile would you like to place?" << endl;
   cin >> tileType;
   cout << "Okay! and what is the X coordinate? (starts at 0, so 0-23)" << endl;
   cin >> tileLocationX;

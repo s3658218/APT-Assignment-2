@@ -28,13 +28,15 @@ void mainMenu()
     cout << "Welcome to Qwirkle!" << std::endl;
     cout << "-------------------" << std::endl;
     cout << endl;
-    cout << "Main Menu" << endl;
-    cout << "---------" << endl;
+    cout << "Menu" << endl;
+    cout << "----" << endl;
 
     cout << "1. New Game " << endl;
     cout << "2. Load Game " << endl;
     cout << "3. Show student information " << endl;
-    cout << "4. Exit " << endl;
+    cout << "4. Quit " << endl;
+    cout << endl;
+    cout << ">" << endl;
     cout << endl;
 
     //read playerInput
@@ -66,14 +68,16 @@ void mainMenu()
 }
 
 void newGame() { // need to do: validation check for numbers or symbols
-  cout << "Starting a New Game\n" << endl;
+  cout << "> 1" << endl;
+  cout << endl;
+  cout << "Starting a New Game" << endl;
+  cout << endl;
   cout << "Enter a name for player 1 (uppercase characters only)" << endl;
   cin >> player1;
+  cout << endl;
   cout << "Enter a name for Player 2 (uppercase characters only)" << endl;
   cin >> player2;
   cout << endl;
-  cout << "Player 1 is: " << player1 << endl;
-  cout << "Player 2 is: " << player2 << endl;
   currentPlayer = player1;
   cout << "Let's Play!" << endl;
   cout << endl;
@@ -83,9 +87,10 @@ void newGame() { // need to do: validation check for numbers or symbols
 
 void continueGameplay() {
   do {
-    cout << "Current Player: " << currentPlayer << endl;
-    cout << player1 << "'s Score: " << player1Score << endl;
-    cout << player2 << "'s Score: " << player2Score << endl;
+    cout << endl;
+    cout << currentPlayer << ", it's your turn" << endl;
+    cout << "Score for " << player1 << ": " << player1Score << endl;
+    cout << "Score for " << player2 << ": " << player2Score << endl;
     cout << "-----------------------" << endl;
     cout << endl;
     cout << "Options" << endl;
