@@ -155,7 +155,6 @@ void placeTileOntoBoard() {
 
 void replaceTileInHand() {
   cout << "REPLACING TILE IN HAND" << endl;
-  switchName();
   cout << "~~~~~~~~~~~~~~~~~~~~~~" << endl;
 }
 
