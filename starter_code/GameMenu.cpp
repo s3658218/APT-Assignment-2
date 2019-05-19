@@ -96,6 +96,9 @@ void continueGameplay() {
     cout << "Score for " << player2 << ": " << player2Score << endl;
     cout << "BOARD" << endl;
     displayBoard();
+    cout << endl;
+    cout << "Your hand is" << endl;
+    cout << "IMPLEMENT HAND LINKEDLIST" << endl;
     cout << "-----------------------" << endl;
     cout << endl;
     cout << "Options" << endl;
