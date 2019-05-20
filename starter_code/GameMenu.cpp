@@ -79,7 +79,7 @@ void newGame() { // need to do: validation check for numbers or symbols
   cout << endl;
   cout << "Player 1 is: " << player1 << endl;
   cout << "Player 2 is: " << player2 << endl;
-  cout << "Let's Play!";
+  cout << "Let's Play! ";
 
   //call function
   std::cout << endl;
@@ -88,27 +88,36 @@ void newGame() { // need to do: validation check for numbers or symbols
 
 void loadGame() 
 {
-  cout << "Enter the filename from which load a game" << endl;
+  string player1 = " ";
+
+  cout << "Enter the filename from which load a game e.g.(fileName.txt)" << endl;
 
   std::string pathInput;
   cin >> pathInput;
 
-  std::istream& inputStream = std::cin;
-  double value;
-  inputStream >> value;
-  std::cout << "Read: " << value << std::endl;
+  std::ifstream inFile;
+  inFile.open(pathInput); 
 
-  //validation check, see if the save file exists
-  // if (!(pathInput == saveGame))
-  // {
-  //   std::cout << "Error: File does not exist. ";
-  // }
-  // else
-  // {
-  //   /* code */
-  //   std::cout << "Success! ";
-  // }
-  
+  //validation check
+  if (!inFile) 
+  {
+    cout << "Unable to open file: " << pathInput << endl;
+  }
+  else
+  {
+    cout << "Success!" << endl;
+    
+    string line;
+
+    while (std::getline(inFile, line)) // read each line of the file
+    {
+        // copy the line to the screen yourself
+        cout << line << endl;
+    }
+    //close the file
+    inFile.close();
+  }
+
 }
 
 void studentInfo() {
