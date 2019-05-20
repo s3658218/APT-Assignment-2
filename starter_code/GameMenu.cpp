@@ -137,7 +137,13 @@ void baseGameplay()
 
   if(playerInput == "save")
   {
-    std::string saveFile("saveFile.txt");
+    //var for save file
+    std::string saveGame;
+
+    std::cout << "Enter name for the save file. e.g. (fileName.txt) ";
+    std::cin >> saveGame;
+
+    std::string saveFile(saveGame);
     std::ofstream outFile;
     outFile.open(saveFile);
     //what gets printed inside the file
