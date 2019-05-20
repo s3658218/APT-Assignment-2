@@ -15,6 +15,7 @@ bool endGameplay;
 bool currentGame;
 
 Player p;
+Board b;
 
 void mainMenu()
 {
@@ -92,7 +93,7 @@ void continueGameplay() {
     cout << "Score for " << p.player1 << ": " << p.player1Score << endl;
     cout << "Score for " << p.player2 << ": " << p.player2Score << endl;
     cout << "BOARD" << endl;
-    displayBoard();
+    b.displayBoard();
     cout << endl;
     cout << "Your hand is" << endl;
     cout << "IMPLEMENT HAND LINKEDLIST" << endl;
@@ -159,9 +160,9 @@ void exitProgram() {
 }
 
 void placeTileOntoBoard() {
-  testBoard();
+  b.testBoard();
   p.switchPlayer();
-  updateScore();
+  p.updateScore();
 }
 
 void replaceTileInHand() {
@@ -177,15 +178,6 @@ void saveCurrentGame() {
 void exitTheProgram() {
   cout << "Goodbye" << endl;
   endGameplay = true;
-}
-
-
-void updateScore() { // needs fixing
-  if (p.currentPlayer == p.player1) {
-    p.player2Score = p.player2Score + 1;
-  } else {
-    p.player1Score = p.player1Score + 1;
-  }
 }
 
 //:)

@@ -12,8 +12,7 @@ void placeTileOntoBoard();
 void replaceTileInHand();
 void saveCurrentGame();
 void exitTheProgram();
-void switchName();
-void updateScore();
+//void switchName();
 
 #endif
 

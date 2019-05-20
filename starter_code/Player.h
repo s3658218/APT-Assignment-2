@@ -13,6 +13,7 @@ public:
   string currentPlayer;
 
   void switchPlayer();
+  void updateScore();
 };
 
 
