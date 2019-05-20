@@ -17,11 +17,8 @@ string stringInput2;
 bool endLoop;
 bool endGameplay;
 bool currentGame;
-int player1Score = 0;
-int player2Score = 0;
-string player1;
-string player2;
-string currentPlayer;
+
+Player p;
 
 void mainMenu()
 {
@@ -29,8 +26,8 @@ void mainMenu()
   {
 
     cout << endl;
-    cout << "Welcome to Qwirkle!" << std::endl;
-    cout << "-------------------" << std::endl;
+    cout << "Welcome to Qwirkle!" << endl;
+    cout << "-------------------" << endl;
     cout << endl;
     cout << "Menu" << endl;
     cout << "----" << endl;
@@ -89,12 +86,12 @@ void newGame() { // need to do: validation check for numbers or symbols
   cout << "Starting a New Game" << endl;
   cout << endl;
   cout << "Enter a name for player 1 (uppercase characters only)" << endl;
-  cin >> player1;
+  cin >> p.player1;
   cout << endl;
   cout << "Enter a name for Player 2 (uppercase characters only)" << endl;
-  cin >> player2;
+  cin >> p.player2;
   cout << endl;
-  currentPlayer = player1;
+  p.currentPlayer = p.player1;
   cout << "Let's Play!" << endl;
   cout << endl;
 
@@ -104,9 +101,9 @@ void newGame() { // need to do: validation check for numbers or symbols
 void continueGameplay() {
   do {
     cout << endl;
-    cout << currentPlayer << ", it's your turn" << endl;
-    cout << "Score for " << player1 << ": " << player1Score << endl;
-    cout << "Score for " << player2 << ": " << player2Score << endl;
+    cout << p.currentPlayer << ", it's your turn" << endl;
+    cout << "Score for " << p.player1 << ": " << p.player1Score << endl;
+    cout << "Score for " << p.player2 << ": " << p.player2Score << endl;
     cout << "BOARD" << endl;
     displayBoard();
     cout << endl;
@@ -176,7 +173,7 @@ void exitProgram() {
 
 void placeTileOntoBoard() {
   testBoard();
-  switchName();
+  p.switchPlayer();
   updateScore();
 }
 
@@ -195,19 +192,11 @@ void exitTheProgram() {
   endGameplay = true;
 }
 
-void switchName() {
-  if (currentPlayer == player1) {
-    currentPlayer = player2;
-  }
-  else {
-    currentPlayer = player1;
-  }
-}
 
 void updateScore() { // needs fixing
-  if (currentPlayer == player1) {
-    player2Score = player2Score + 1;
+  if (p.currentPlayer == p.player1) {
+    p.player2Score = p.player2Score + 1;
   } else {
-    player1Score = player1Score + 1;
+    p.player1Score = p.player1Score + 1;
   }
 }
