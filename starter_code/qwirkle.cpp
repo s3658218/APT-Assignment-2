@@ -1,7 +1,6 @@
 
 #include "LinkedList.h"
 #include "GameMenu.h"
-#include "Tile.h"
 
 #include <iostream>
 
@@ -18,7 +17,6 @@ void mainMenu();
 int main(void)
 {
    //calling mainMenu function when program starts
-
    mainMenu();
 
    return EXIT_SUCCESS;

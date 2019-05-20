@@ -10,8 +10,9 @@ typedef int Shape;
 
 class Tile {
 public:
-  createTiles();
-  printTileBag();
+  //getColour();
+  //createTiles();
+  //printTileBag();
    Colour colour;
    Shape  shape;
 };
