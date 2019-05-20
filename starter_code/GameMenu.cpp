@@ -2,7 +2,7 @@
   #include <string>
   #include "GameMenu.h"
 
-  //output stream required when writing to a file
+  //input & output stream required when writing to a file
   #include <fstream>
 
   using std::string;
@@ -10,12 +10,17 @@
   using std::endl;
   using std::cin;
   //output stream required when writing to a file
+  //input stream required when writing to a file
   using std::ofstream;
+  using std::ifstream;
 
 int playerInput;
 std::string player1;
 std::string player2;
 bool endLoop;
+
+//save file needs to be global
+std::string saveGame;
 
 void baseGameplay();
 
@@ -84,6 +89,26 @@ void newGame() { // need to do: validation check for numbers or symbols
 void loadGame() 
 {
   cout << "Enter the filename from which load a game" << endl;
+
+  std::string pathInput;
+  cin >> pathInput;
+
+  std::istream& inputStream = std::cin;
+  double value;
+  inputStream >> value;
+  std::cout << "Read: " << value << std::endl;
+
+  //validation check, see if the save file exists
+  // if (!(pathInput == saveGame))
+  // {
+  //   std::cout << "Error: File does not exist. ";
+  // }
+  // else
+  // {
+  //   /* code */
+  //   std::cout << "Success! ";
+  // }
+  
 }
 
 void studentInfo() {
@@ -138,7 +163,7 @@ void baseGameplay()
   if(playerInput == "save")
   {
     //var for save file
-    std::string saveGame;
+    //std::string saveGame;
 
     std::cout << "Enter name for the save file. e.g. (fileName.txt) ";
     std::cin >> saveGame;
