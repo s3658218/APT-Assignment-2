@@ -2,7 +2,7 @@
 #include "LinkedList.h"
 
 LinkedList::LinkedList() {
-   head = nullptr;
+   headBag = nullptr;
 
    // TODO
 }
