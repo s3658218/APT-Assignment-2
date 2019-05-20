@@ -9,3 +9,5 @@ LinkedList::LinkedList() {
 
 LinkedList::~LinkedList() {
 }
+
+//:)

@@ -187,3 +187,5 @@ void updateScore() { // needs fixing
     p.player1Score = p.player1Score + 1;
   }
 }
+
+//:)

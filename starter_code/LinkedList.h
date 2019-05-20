@@ -15,3 +15,5 @@ private:
 };
 
 #endif // ASSIGN2_LINKEDLIST_H
+
+//:)

@@ -14,3 +14,4 @@ void Player::switchPlayer() {
     player1Score = player1Score + 1;
   }
 }
+//:)
