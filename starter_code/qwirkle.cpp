@@ -23,3 +23,9 @@ int main(void)
 
    return EXIT_SUCCESS;
 }
+
+
+// ~~~CHECKLIST~~~
+// - LORENZO: Add Save and Load funcitons
+// - TYLAR: Implement LinkedList and randomiser into my code
+// - GEORGE: Figure out Tiles tomorrow and 
