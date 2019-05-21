@@ -3,229 +3,122 @@
 #include "Tile.h"
 #include "TileCodes.h"
 #include <iostream>
+
 void removeNode(Node* n){
+// setting a location to the next spot in the linkedlist
 Node* temp = n -> next;
+//while the next position isn't a nullptr, make the head the next position
 if (n -> next != nullptr){
    n -> tile = temp -> tile;
    n -> next = temp -> next;
    free(temp);
 }else{
+//else it just sets the head as null
    n = nullptr;
    free(temp);
  }
 }
-Node* addBackToBag(Node* head, Node* hand){
+
+void LinkedList::addBackToBag(Node* hand){
+   // creating a new node to add to the end of the bag
    Node* tmp = new Node();
-   Tile* temp = hand -> tile;
-   tmp -> tile = temp;
+   //setting the new node value as the hand's value
+   tmp -> tile = hand -> tile;
    tmp -> next = nullptr;
-   Node *ptr = head;
-   if (head == nullptr){
-      head = tmp;
-      removeNode (hand);
-      return head;
-   }
+   //setting a node to iterate through the linked list
+   Node* ptr = headBag;
+   //finding the end of the linked list
    while (ptr -> next != nullptr){
       ptr = ptr -> next;
    }
    ptr -> next = tmp;
    ptr = ptr -> next;
-   removeNode(hand);
-   return head;
 }
-Node* createBag(Tile* tile, Node* n){
+void LinkedList::createBag(Tile* tile){
    Node* tmp = new Node();
    tmp -> tile = tile;
    tmp -> next = nullptr;
-   std::cout << tmp -> tile << std::endl;
-   Node* ptr = n; //head of linked list
-   if (n == nullptr){
-      n = tmp;
-      return n;
-   }
+   if (headBag == nullptr){
+      headBag = tmp;
+   }else{
+   Node* ptr = headBag;
    while (ptr -> next != nullptr){
       ptr = ptr -> next;
    }
    ptr -> next = tmp;
    ptr = ptr -> next;
-   return n;
+   }
 }
 
-Node* addToHand(Node* bagHead, Node* hand){
+Node* LinkedList::deal(Node* hand){
    Node* tmp = new Node();
-   tmp = bagHead;
+   tmp -> tile = headBag -> tile;
    tmp -> next = nullptr;
-   Node* ptr = hand;
    if (hand == nullptr){
       hand = tmp;
-      removeNode(bagHead);
-      std::cout << tmp -> tile << std::endl;
+      removeNode(headBag);
       return hand;
-   }
-   while (ptr != nullptr){
+   }else{
+   Node* ptr = hand;
+   while (ptr -> next != nullptr){
       ptr = ptr -> next;
    }
    ptr -> next = tmp;
    ptr = ptr -> next;
-   removeNode(bagHead);
-     std::cout << tmp -> tile << std::endl;
+   removeNode(headBag);
    return hand;
-}
-
-void printList(Node *n){
-   int test=0;
-    while (n != nullptr){
-        std::cout << n -> tile << "" << std::endl;
-        n = n -> next;
-        test++;
- }
- std::cout << test << std::endl;
-}
-void printTileBag(Tile tileBag[72]){
-   int check = 0;
-   for (int i = 0; i < 72; i++){
-        std::cout << tileBag[i].colour << tileBag[i].shape << std::endl;
-        check++;
-        if ((i + 1)% 12 == 0){
-            std::cout << std::endl;
-        }
-    }
-    std::cout << check << std::endl;
-}
-LinkedList::LinkedList() {
-   // headBag = nullptr;
-   //bag = nullptr;
-   // tailBag = nullptr;
-   p1HeadHand = nullptr;
-   Tile bagOfTiles[72];
-   TileFunction b;
-   b.createTiles(bagOfTiles);
-   Tile* bagOfTilesptr[72];
-   for (int i = 0; i < 72; i++){
-      bagOfTilesptr[i] = &bagOfTiles[i];
-      
    }
-    printTileBag(*bagOfTilesptr);
+}
+Node* LinkedList::replaceTile(Node* hand, int index, Node* bag){
+   Node* temp = hand;
+   //if the index is 0 it will replace the head tile
+   if (index == 0){
+      addBackToBag(hand);
+      hand -> tile = bag -> tile;
+      removeNode(bag);
+      return hand;
+   } else {
+   //find the position in the linkedlist with the index and replace at that position
+   for (int i = 0; i < index; i++){
+      temp = temp -> next;
+   }
+   addBackToBag(temp);
+   temp -> tile = bag -> tile;
+   removeNode(bag);
+   return hand;
+   }
+}
+Node* LinkedList::placeTile(Node* hand, int index){
+   Node* temp = hand;
+   if (index == 0){
+      removeNode(hand);
+      deal(hand);
+      return hand;
+   } else {
+      for (int i = 0; i < index; i++){
+      temp = temp -> next;
+   }
+   removeNode(temp);
+   deal(hand);
+   return hand;
+   }
 
-    // https://www.youtube.com/watch?v=o5wJkJJpKtM help with understanding linked lists
-   // for (int i = 0; i < 72; i++){
-   //   // Setting the head node
-   //    if (headBag == nullptr){
-   //    bag = new Node();
-   //    bag -> tile = bagOfTilesptr[i];
-   //    bag -> next = nullptr;
-   //    headBag = bag;
-   //    tailBag = bag;
-   //    } else {
-   //       //https://www.youtube.com/watch?v=o5wJkJJpKtM helps understand this bit
-   //       bag = new Node(); //create a new node
-   //       bag -> tile = bagOfTilesptr[i]; //insert the pointer value of the tile
-   //       bag -> next = nullptr;
-   //       tailBag -> next = bag; //links the first node to this new tile
-   //       tailBag = tailBag -> next; //next pointer is now pointing to the new node next
-   //    }
-   //  }
-    for (int i = 0; i < 72; i++){
-       Tile* temp = bagOfTilesptr[i];
-       headBag = createBag(temp, headBag);
-        //std::cout << headBag -> tile << std::endl;
-    }
-   printList(headBag);
-   //  deal(headBag,p1HeadHand);
-   // for (int i = 0; i < 2; i++){
-   //  p1HeadHand = addBackToBag(p1HeadHand,headBag);
-   // }
-   //  printList(p1HeadHand);
-   //  printList(headBag);
+}
+
+
+LinkedList::LinkedList() {
+   headBag = nullptr;
+   p1Head = nullptr;
+   p2Head = nullptr;
 }
 
 LinkedList::~LinkedList() {
+       Node* temp = headBag;
+    while (temp != nullptr)
+    {
+        Node* del = del;
+        temp = temp->next;
+        delete temp;
+    }
 }
 
-
-
-//All made in a main for testing purposes
-int main(){
-   LinkedList();
-   // Tile testBag[72];
-   // Node* headBag;
-   // Node* bag;
-   // Node* tailBag;
-   // // Node* player1Hand;
-   // // Node* player1HeadHand;
-   // // Node* player1TailHand;
-   // //Node* player2Hand;
-   // //Node* player2HeadHand;
-   // // Node* player2TailHand;
-   // headBag = nullptr;
-   // tailBag = nullptr;
-   // //Checking if I can pass the tiles from tile.cpp
-   // Tile bagOfTiles[72];
-   // //NodeFunctions a;
-   // TileFunction b;
-   // b.createTiles(bagOfTiles);
-   // Tile* bagOfTilesptr[72];
-   // for (int i = 0; i < 72; i++){
-   //    bagOfTilesptr[i] = &bagOfTiles[i];
-   // }
-   // //Creating a bag linked list
-   // printTileBag(*bagOfTilesptr);
-   // for (int i = 0; i < 72; i++){
-   //   // Setting the head node
-   //    if (i == 0){
-   //    bag = new Node();
-   //    bag -> tile = bagOfTilesptr[i];
-   //    headBag = bag;
-   //    tailBag = bag;
-   //    } else {
-   //       //https://www.youtube.com/watch?v=o5wJkJJpKtM helps understand this bit
-   //       bag = new Node(); //create a new node
-   //       bag -> tile = bagOfTilesptr[i]; //insert the pointer value of the tile
-   //       tailBag -> next = bag; //links the first node to this new tile
-   //       tailBag = tailBag -> next; //next pointer is now pointing to the new node next
-   //    }
-   //  }
-
-   // //  for (int i = 0; i < 5;){
-   // //     if (i == 0){
-   // //        player1HeadHand = new Node();
-   // //        player1Hand = new Node();
-   // //        player1Hand -> tile = nullptr;
-   // //        player1HeadHand = player1Hand;
-   // //        player1TailHand = player1Hand;
-   // //     } else {
-   // //        player1Hand = new Node();
-   // //        player1Hand -> tile = nullptr;
-   // //        player1TailHand = player1TailHand -> next;
-   // //     }
-   // //  }
-   // //  for (int i = 0; i < 5;){
-   // //     if (i == 0){
-   // //        player2HeadHand = new Node();
-   // //        player2Hand = new Node();
-   // //        player2Hand -> tile = nullptr;
-   // //        player2Hand -> next = player1Hand;
-   // //        player2HeadHand = player2Hand;
-   // //        player2TailHand = player2Hand;
-   // //     } else {
-   // //        player2Hand = new Node();
-   // //        player2Hand -> tile = nullptr;
-   // //        player2TailHand -> next = player2Hand;
-   // //        player2TailHand = player2TailHand -> next;
-   // //     }
-   // //  }
-   // //fillBag(bagOfTiles, headBag);
-   // printList(headBag);
-   // for (int i = 0; i < 72; i++){
-   //     if (headBag != nullptr){
-   //         testBag[i] = *headBag -> tile;
-   //         headBag = headBag -> next;
-   //     } 
-   //  }
-   //  printTileBag(testBag);
-   //  //a.deal(headBag,player1HeadHand);
-   //  //printList(player1HeadHand);
-   //  //printList(headBag);
-   // // printList(player1HeadHand);
-   // // printList(player2HeadHand);
-}

@@ -13,6 +13,12 @@ class Tile {
 public:
    Colour colour;
    Shape  shape;
+   Tile(Colour colour, Shape shape);
+   Tile();
+   Colour getColour() const;
+   Shape getShape() const;
+   void setColour(Colour colour);
+   void setShape(Shape shape);
 };
 
 class TileFunction{
