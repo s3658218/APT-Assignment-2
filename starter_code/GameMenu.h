@@ -11,6 +11,8 @@ public:
   void exitProgram();
   void helpFunction1();
   void helpFunction2();
+  void testyyy();
+  printArray(Tile tiles[72]);
 
   void placeTileOntoBoard();
   void replaceTileInHand();

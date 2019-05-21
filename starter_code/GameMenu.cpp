@@ -2,6 +2,9 @@
   #include "GameMenu.h"
   #include "Board.h"
   #include "Player.h"
+  #include "Tile.h"
+  #include "Randomiser.h"
+  #include "LinkedList.h"
 
   using std::string;
   using std::cout;
@@ -17,6 +20,33 @@ bool playerTurn;
 
 Player p;
 Board b;
+Tile t;
+TileFunction f;
+Randomiser r;
+LinkedList l;
+
+void GameMenu::printArray(Tile tiles[72]){
+   for (int i = 0; i < 72; i++){
+   std::cout << tiles[i].colour << tiles[i].shape <<std::endl;
+      if ((i + 1)% 12 == 0){
+            std::cout << std::endl;
+        }
+   }
+}
+
+
+void GameMenu::testyyy() {
+  Tile theBagOfTiles[72];
+  f.createTiles();
+  r.shuffleBag();
+  Tile* bagOfTilesptr[72];
+  for (int i = 0; i < 72; i++) {
+    bagOfTilesptr[i] = &theBagOfTiles[i];
+
+  }
+
+  printArray(*bagOfTilesptr);
+}
 
 void GameMenu::mainMenu()
 {
@@ -53,6 +83,7 @@ void GameMenu::mainMenu()
     else if(stringInput1 == "3")
     {
       GameMenu::studentInfo();
+      GameMenu::testyyy();
     }
     else if (stringInput1 == "4")
     {
