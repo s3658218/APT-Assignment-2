@@ -26,10 +26,10 @@ void printArray(Tile tiles[72]){
 
 int main(void) {
  Tile bagOfTiles[72];
-   TileFunction b;
+   Tile t;
    Randomiser r;
    LinkedList l;
-   b.createTiles(bagOfTiles);
+   t.createTiles(bagOfTiles);
    r.shuffleBag(bagOfTiles);
    Tile* bagOfTilesptr[72];
    for (int i = 0; i < 72; i++){

@@ -19,12 +19,8 @@ public:
    Shape getShape() const;
    void setColour(Colour colour);
    void setShape(Shape shape);
+   void createTiles(Tile tiles[72]);
 };
 
-class TileFunction{
-   public:
-   void createTiles(Tile tiles[72]);
-   void printTileBag(Tile tileBag[72]);
-};
 
 #endif // ASSIGN2_TILE_H
