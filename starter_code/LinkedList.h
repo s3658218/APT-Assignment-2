@@ -18,9 +18,3 @@ public:
 
 
 #endif // ASSIGN2_LINKEDLIST_H
-<<<<<<< HEAD
-© 2019 GitHub, Inc.
-=======
-
-//:)
->>>>>>> d894682e56b5b9b9733fc278b985354789bf322d

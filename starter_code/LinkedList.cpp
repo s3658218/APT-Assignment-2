@@ -120,5 +120,3 @@ LinkedList::~LinkedList() {
         delete temp;
     }
 }
-
-//:)

@@ -10,9 +10,6 @@ typedef int Shape;
 
 class Tile {
 public:
-  //getColour();
-  //createTiles();
-  //printTileBag();
    Colour colour;
    Shape  shape;
    Tile(Colour colour, Shape shape);
@@ -30,4 +27,3 @@ class TileFunction{
 };
 
 #endif // ASSIGN2_TILE_H
-//:)

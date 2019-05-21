@@ -21,7 +21,6 @@ void Tile::setShape(Shape shape) {
     Tile::shape = shape;
 }
 
-<<<<<<< HEAD
 void TileFunction::createTiles(Tile tiles[72]){
     int currentTile = 0;
     for (int i = 0; i < 6; i++){
@@ -59,7 +58,3 @@ void TileFunction::printTileBag(Tile tileBag[72]){
         }
     }
 }
-=======
-// George was here :)
-//:)
->>>>>>> d894682e56b5b9b9733fc278b985354789bf322d

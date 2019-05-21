@@ -9,20 +9,15 @@ public:
   void loadGame();
   void studentInfo();
   void exitProgram();
+  void helpFunction1();
+  void helpFunction2();
 
-<<<<<<< HEAD
   void placeTileOntoBoard();
   void replaceTileInHand();
   void saveCurrentGame();
   void exitTheProgram();
+  void endTurn();
 };
-=======
-void placeTileOntoBoard();
-void replaceTileInHand();
-void saveCurrentGame();
-void exitTheProgram();
-//void switchName();
->>>>>>> d894682e56b5b9b9733fc278b985354789bf322d
 
 #endif
 

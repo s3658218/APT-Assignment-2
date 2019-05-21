@@ -16,4 +16,3 @@ Node::Node(Node& other)
     this->next = other.next;
 
 }
-//:)

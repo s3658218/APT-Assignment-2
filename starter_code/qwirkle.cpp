@@ -11,13 +11,15 @@ using std::string;
 using std::cout;
 using std::endl;
 
+GameMenu g;
+
 //declaring proto-type function
 void mainMenu();
 
 int main(void)
 {
    //calling mainMenu function when program starts
-   mainMenu();
+   g.mainMenu();
 
    return EXIT_SUCCESS;
 }
