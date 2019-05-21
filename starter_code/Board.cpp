@@ -1,5 +1,6 @@
 #include "Tile.h"
 #include "TileCodes.h"
+#include "Board.h"
 
 #include <iostream>
 #include <vector>
@@ -22,18 +23,24 @@ int testArray[6][6] = { {0, 0, 0, 0, 0, 0},
                           {0, 0, 0, 0, 0, 0},
                           {0, 0, 0, 0, 0, 0} };
 
-void displayBoard() {
+string letters[6] = {"A", "B", "C", "D", "E", "F"};
+
+void Board::displayBoard() {
+  cout << "  0  1  2  3  4  5" << endl;
   for (unsigned int i = 0; i < 6; i++) {
-    cout << endl;
+    cout << letters[i];
+    //cout << endl;
       for (unsigned int j = 0; j < 6; j++) {
           cout << "|" <<testArray[i][j] << "|";
       }
+      cout << endl;
   }
   cout << endl;
 }
 
 
-void testBoard() {
+
+void Board::testBoard() {
   cout << "Which tile would you like to place?" << endl;
   cin >> tileType;
   cout << "Okay! and what is the X coordinate? (starts at 0, so 0-23)" << endl;
@@ -56,3 +63,4 @@ void testBoard() {
   //}
   cout << endl;
 }
+//:)

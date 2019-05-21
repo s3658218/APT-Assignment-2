@@ -13,20 +13,18 @@ string stringInput2;
 bool endLoop;
 bool endGameplay;
 bool currentGame;
-int player1Score = 0;
-int player2Score = 0;
-string player1;
-string player2;
-string currentPlayer;
 
-void mainMenu()
+Player p;
+Board b;
+
+void GameMenu::mainMenu()
 {
   do
   {
 
     cout << endl;
-    cout << "Welcome to Qwirkle!" << std::endl;
-    cout << "-------------------" << std::endl;
+    cout << "Welcome to Qwirkle!" << endl;
+    cout << "-------------------" << endl;
     cout << endl;
     cout << "Menu" << endl;
     cout << "----" << endl;
@@ -45,22 +43,22 @@ void mainMenu()
 
     if(stringInput1 == "1")
     {
-      newGame();
+      GameMenu::newGame();
     }
     else if(stringInput1 == "2")
     {
-      loadGame();
+      GameMenu::loadGame();
     }
     else if(stringInput1 == "3")
     {
-      studentInfo();
+      GameMenu::studentInfo();
     }
     else if (stringInput1 == "4")
     {
-      exitProgram();
+      GameMenu::exitProgram();
     }
     else if(stringInput1 == "^D") {
-      exitProgram();
+      GameMenu::exitProgram();
     } else {
       cout << endl;
       cout << "Invalid Input" << endl;
@@ -70,32 +68,32 @@ void mainMenu()
 
 }
 
-void newGame() { // need to do: validation check for numbers or symbols
+void GameMenu::newGame() { // need to do: validation check for numbers or symbols
   cout << "> 1" << endl;
   cout << endl;
   cout << "Starting a New Game" << endl;
   cout << endl;
   cout << "Enter a name for player 1 (uppercase characters only)" << endl;
-  cin >> player1;
+  cin >> p.player1;
   cout << endl;
   cout << "Enter a name for Player 2 (uppercase characters only)" << endl;
-  cin >> player2;
+  cin >> p.player2;
   cout << endl;
-  currentPlayer = player1;
+  p.currentPlayer = p.player1;
   cout << "Let's Play!" << endl;
   cout << endl;
 
-  continueGameplay();
+  GameMenu::continueGameplay();
 }
 
-void continueGameplay() {
+void GameMenu::continueGameplay() {
   do {
     cout << endl;
-    cout << currentPlayer << ", it's your turn" << endl;
-    cout << "Score for " << player1 << ": " << player1Score << endl;
-    cout << "Score for " << player2 << ": " << player2Score << endl;
+    cout << p.currentPlayer << ", it's your turn" << endl;
+    cout << "Score for " << p.player1 << ": " << p.player1Score << endl;
+    cout << "Score for " << p.player2 << ": " << p.player2Score << endl;
     cout << "BOARD" << endl;
-    displayBoard();
+    b.displayBoard();
     cout << endl;
     cout << "Your hand is" << endl;
     cout << "IMPLEMENT HAND LINKEDLIST" << endl;
@@ -111,21 +109,21 @@ void continueGameplay() {
 
     if(stringInput2 == "1")
     {
-      placeTileOntoBoard();
+      GameMenu::placeTileOntoBoard();
     }
     else if(stringInput2 == "2")
     {
-      replaceTileInHand();
+      GameMenu::replaceTileInHand();
     }
     else if(stringInput2 == "3")
     {
-      saveCurrentGame();
+      GameMenu::saveCurrentGame();
     }
     else if (stringInput2 == "4")
     {
-      exitTheProgram();
+      GameMenu::exitTheProgram();
     } else if (stringInput2 == "^D") {
-      exitTheProgram();
+      GameMenu::exitTheProgram();
     } else {
       cout << endl;
       cout << "Invalid Input" << endl;
@@ -136,11 +134,11 @@ void continueGameplay() {
 
 }
 
-void loadGame() {
+void GameMenu::loadGame() {
   cout << "Enter the filename from which load a game" << endl;
 }
 
-void studentInfo() {
+void GameMenu::studentInfo() {
     cout << "Name: George Korovinis" << endl;
     cout << "Student ID: s3658218" << endl;
     cout << "Email: s3658218@student.rmit.edu.au\n" << endl;
@@ -156,45 +154,30 @@ void studentInfo() {
 
 }
 
-void exitProgram() {
+void GameMenu::exitProgram() {
   cout << "Goodbye" << endl;
   endLoop = true;
 }
 
-void placeTileOntoBoard() {
-  testBoard();
-  switchName();
-  updateScore();
+void GameMenu::placeTileOntoBoard() {
+  b.testBoard();
+  p.switchPlayer();
+  p.updateScore();
 }
 
-void replaceTileInHand() {
+void GameMenu::replaceTileInHand() {
   cout << "REPLACING TILE IN HAND" << endl;
   cout << "~~~~~~~~~~~~~~~~~~~~~~" << endl;
 }
 
-void saveCurrentGame() {
+void GameMenu::saveCurrentGame() {
   cout << "SAVING THE CURRENT GAME" << endl;
   cout << "~~~~~~~~~~~~~~~~~~~~~~~" << endl;
 }
 
-void exitTheProgram() {
+void GameMenu::exitTheProgram() {
   cout << "Goodbye" << endl;
   endGameplay = true;
 }
 
-void switchName() {
-  if (currentPlayer == player1) {
-    currentPlayer = player2;
-  }
-  else {
-    currentPlayer = player1;
-  }
-}
-
-void updateScore() { // needs fixing
-  if (currentPlayer == player1) {
-    player2Score = player2Score + 1;
-  } else {
-    player1Score = player1Score + 1;
-  }
-}
+//:)
