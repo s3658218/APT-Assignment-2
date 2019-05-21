@@ -3,6 +3,9 @@
 #include "Randomiser.h"
 
 #include <iostream>
+Tile t;
+Randomiser r;
+LinkedList l;
 //all code here is for testing
 
 void printList(Node *n){
@@ -30,14 +33,59 @@ void printArray(Node* n){
    n = n -> next;
    }
 }
+void tileComparePlace(Node* n, Tile* tile){
+   int index = 0;
+   int counter = 0;
+   Node* temp = n;
+   while (counter <= 5){
+   Tile tempTile = *tile;
+   Tile* nodeTileptr = temp -> tile;
+   Tile nodeTile = *nodeTileptr;
+      if (tempTile.colour == nodeTile.colour && tempTile.shape == nodeTile.shape){
+         std::cout << "Placed tile" <<  std::endl;
+         l.placeTile(n, index);
+         counter = 7;
+      } else {
+         if(temp -> next != nullptr){
+         temp = temp -> next;
+         }
+         counter++;
+         index++;
+      }
+   }
+  if (counter == 6){ std::cout << "Enter a valid tile" << std::endl;
+   delete tile;
+  }
+}
+void tileCompareReplace(Node* n, Tile* tile){
+   int index = 0;
+   int counter = 0;
+   Node* temp = n;
+   while (counter <= 5){
+   Tile tempTile = *tile;
+   Tile* nodeTileptr = temp -> tile;
+   Tile nodeTile = *nodeTileptr;
+      if (tempTile.colour == nodeTile.colour && tempTile.shape == nodeTile.shape){
+         std::cout << "Replaced tile" <<  std::endl;
+         l.replaceTile(n, index, l.headBag);
+         counter = 7;
+      } else {
+         if(temp -> next != nullptr){
+         temp = temp -> next;
+         }
+         counter++;
+         index++;
+      }
+   }
+  if (counter == 6){ std::cout << "Enter a valid tile" << std::endl;
+   delete tile;
+  }
+}
 #define EXIT_SUCCESS    0
 
 int main(void) {
  Tile bagOfTiles[72];
  Tile* bagOfTilesptr[72];
-   Tile t;
-   Randomiser r;
-   LinkedList l;
    t.createTiles(bagOfTiles);
    r.shuffleBag(bagOfTiles);
    for (int i = 0; i < 72; i++){
@@ -52,7 +100,9 @@ int main(void) {
    for (int i = 0; i < 5; i++){
        l.p1Head = l.deal(l.p1Head);
     }
-
+printArray(l.p1Head);
+    Tile* xd = new Tile('R', 1);
+    tileComparePlace(l.p1Head,xd);
 
    printArray(l.p1Head);
 

@@ -106,6 +106,7 @@ Node* LinkedList::placeTile(Node* hand, int index){
 }
 
 
+
 LinkedList::LinkedList() {
    headBag = nullptr;
    p1Head = nullptr;
