@@ -13,6 +13,12 @@ string stringInput2;
 bool endLoop;
 bool endGameplay;
 bool currentGame;
+<<<<<<< HEAD
+=======
+
+Player p;
+Board b;
+>>>>>>> d894682e56b5b9b9733fc278b985354789bf322d
 
 Player p;
 Board b;
@@ -159,7 +165,11 @@ void GameMenu::exitProgram() {
   endLoop = true;
 }
 
+<<<<<<< HEAD
 void GameMenu::placeTileOntoBoard() {
+=======
+void placeTileOntoBoard() {
+>>>>>>> d894682e56b5b9b9733fc278b985354789bf322d
   b.testBoard();
   p.switchPlayer();
   p.updateScore();
