@@ -13,12 +13,13 @@ public:
   void exitProgram();
   void helpFunction1();
   void helpFunction2();
+  void checkForEndTurn();
 
   void placeTileOntoBoard();
   void replaceTileInHand();
   void saveCurrentGame();
   void exitTheProgram();
-  void endTurn();
+  //void endTurn();
 
   void printList(Node *n);
   void printArray(Node* n);
