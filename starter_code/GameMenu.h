@@ -1,8 +1,10 @@
 #ifndef GAMEMENU_H
 #define GAMEMENU_H
-
+#include "Node.h"
 class GameMenu {
 public:
+
+  Node* z;
   void mainMenu();
   void newGame();
   void continueGameplay();
@@ -11,16 +13,18 @@ public:
   void exitProgram();
   void helpFunction1();
   void helpFunction2();
-  void testyyy();
-  printArray(Tile tiles[72]);
+  void checkForEndTurn();
 
   void placeTileOntoBoard();
   void replaceTileInHand();
   void saveCurrentGame();
   void exitTheProgram();
-  void endTurn();
+  //void endTurn();
+
+  void printList(Node *n);
+  void printArray(Node* n);
+
+
 };
 
 #endif
-
-//:)

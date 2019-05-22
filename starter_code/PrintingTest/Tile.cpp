@@ -50,3 +50,9 @@ void Tile::createTiles(Tile tiles[72]){
         }
     }
 }
+
+//Tile createTileBag(Tile bagTiles[71]){
+ //createTiles(bagTiles);
+ //return bagTiles[71];
+//}
+// Empty... for now?
