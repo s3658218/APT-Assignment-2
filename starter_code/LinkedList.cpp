@@ -105,7 +105,54 @@ Node* LinkedList::placeTile(Node* hand, int index){
 
 }
 
-
+void LinkedList::tileComparePlace(Node* n, Tile* tile){
+   int index = 0;
+   int counter = 0;
+   Node* temp = n;
+   while (counter <= 6){
+   Tile tempTile = *tile;
+   Tile* nodeTileptr = temp -> tile;
+   Tile nodeTile = *nodeTileptr;
+      if (tempTile.colour == nodeTile.colour && tempTile.shape == nodeTile.shape){
+         std::cout << "Placed tile" <<  std::endl;
+         placeTile(n, index);
+         counter = 8;
+      } else {
+         if(temp -> next != nullptr){
+         temp = temp -> next;
+         }
+         counter++;
+         index++;
+      }
+   }
+  if (counter == 7){ std::cout << "Enter a valid tile" << std::endl;
+   delete tile;
+  }
+}
+void LinkedList::tileCompareReplace(Node* n, Tile* tile){
+   int index = 0;
+   int counter = 0;
+   Node* temp = n;
+   while (counter <= 6){
+   Tile tempTile = *tile;
+   Tile* nodeTileptr = temp -> tile;
+   Tile nodeTile = *nodeTileptr;
+      if (tempTile.colour == nodeTile.colour && tempTile.shape == nodeTile.shape){
+         std::cout << "Replaced tile" <<  std::endl;
+         replaceTile(n, index, headBag);
+         counter = 8;
+      } else {
+         if(temp -> next != nullptr){
+         temp = temp -> next;
+         }
+         counter++;
+         index++;
+      }
+   }
+  if (counter == 7){ std::cout << "Enter a valid tile" << std::endl;
+   delete tile;
+  }
+}
 
 LinkedList::LinkedList() {
    headBag = nullptr;

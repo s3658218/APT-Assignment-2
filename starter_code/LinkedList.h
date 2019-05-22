@@ -12,6 +12,8 @@ public:
    Node* replaceTile(Node* hand, int index, Node* bag);
    Node* placeTile(Node* hand, int index);
    Node* deal(Node* hand);
+   void tileComparePlace(Node* n, Tile* tile);
+   void tileCompareReplace(Node* n, Tile* tile);
    Node* headBag;
    Node* p1Head;
    Node* p2Head;

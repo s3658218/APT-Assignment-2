@@ -20,66 +20,19 @@ void printList(Node *n){
 
 void printArray(Node* n){
    //creating an array just for this hand
-   Tile hand[5];
+   Tile hand[6];
    //creating a pointer array to store the node value
-   Tile* handptr[5];
-   for (int i = 0; i < 5; i++){
+   Tile* handptr[6];
+   for (int i = 0; i < 6; i++){
    //storing node value into pointer array
    handptr[i] = n -> tile;
    //storing dereferencing the pointer and storing it into a temp hand
    hand[i] = *handptr[i];
-   std::cout << hand[i].colour << hand[i].shape <<std::endl;
+   std::cout << hand[i].colour << hand[i].shape << " ";
    //going to the next node
    n = n -> next;
    }
-}
-void tileComparePlace(Node* n, Tile* tile){
-   int index = 0;
-   int counter = 0;
-   Node* temp = n;
-   while (counter <= 5){
-   Tile tempTile = *tile;
-   Tile* nodeTileptr = temp -> tile;
-   Tile nodeTile = *nodeTileptr;
-      if (tempTile.colour == nodeTile.colour && tempTile.shape == nodeTile.shape){
-         std::cout << "Placed tile" <<  std::endl;
-         l.placeTile(n, index);
-         counter = 7;
-      } else {
-         if(temp -> next != nullptr){
-         temp = temp -> next;
-         }
-         counter++;
-         index++;
-      }
-   }
-  if (counter == 6){ std::cout << "Enter a valid tile" << std::endl;
-   delete tile;
-  }
-}
-void tileCompareReplace(Node* n, Tile* tile){
-   int index = 0;
-   int counter = 0;
-   Node* temp = n;
-   while (counter <= 5){
-   Tile tempTile = *tile;
-   Tile* nodeTileptr = temp -> tile;
-   Tile nodeTile = *nodeTileptr;
-      if (tempTile.colour == nodeTile.colour && tempTile.shape == nodeTile.shape){
-         std::cout << "Replaced tile" <<  std::endl;
-         l.replaceTile(n, index, l.headBag);
-         counter = 7;
-      } else {
-         if(temp -> next != nullptr){
-         temp = temp -> next;
-         }
-         counter++;
-         index++;
-      }
-   }
-  if (counter == 6){ std::cout << "Enter a valid tile" << std::endl;
-   delete tile;
-  }
+   std::cout << std::endl;
 }
 #define EXIT_SUCCESS    0
 
@@ -97,12 +50,12 @@ int main(void) {
        l.createBag(temp);
     }
 
-   for (int i = 0; i < 5; i++){
+   for (int i = 0; i < 6; i++){
        l.p1Head = l.deal(l.p1Head);
     }
-printArray(l.p1Head);
+   printArray(l.p1Head);
     Tile* xd = new Tile('R', 1);
-    tileComparePlace(l.p1Head,xd);
+    l.tileComparePlace(l.p1Head,xd);
 
    printArray(l.p1Head);
 
