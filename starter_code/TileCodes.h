@@ -1,4 +1,3 @@
-
 #ifndef ASSIGN1_TILECODES_H
 #define ASSIGN1_TILECODES_H
 
@@ -19,4 +18,3 @@
 #define CLOVER    6
 
 #endif // ASSIGN1_TILECODES_H
-//:)
