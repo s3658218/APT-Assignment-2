@@ -86,4 +86,3 @@ void Board::testBoard() {
   //}
   cout << endl;
 }
-//:)
