@@ -18,8 +18,11 @@ bool endLoop;
 bool endGameplay;
 bool currentGame;
 bool playerTurn;
+<<<<<<< HEAD
 Node* z;
 bool nodeCheck;
+=======
+>>>>>>> fb74e5bc7a22004edf5fe9394714696b8da970fc
 
 Player p;
 
@@ -54,6 +57,7 @@ void GameMenu::mainMenu()
 
     if(stringInput1 == "1")
     {
+<<<<<<< HEAD
       Tile bagOfTiles[72];
       Tile* bagOfTilesptr[72];
       t.createTiles(bagOfTiles);
@@ -72,6 +76,8 @@ void GameMenu::mainMenu()
         l.p2Head = l.deal(l.p2Head);
       }
 
+=======
+>>>>>>> fb74e5bc7a22004edf5fe9394714696b8da970fc
       GameMenu::newGame();
     }
     else if(stringInput1 == "2")
@@ -80,8 +86,11 @@ void GameMenu::mainMenu()
     }
     else if(stringInput1 == "3")
     {
+<<<<<<< HEAD
       //printArray(l.p1Head);
       //printArray(l.p2Head);
+=======
+>>>>>>> fb74e5bc7a22004edf5fe9394714696b8da970fc
       GameMenu::studentInfo();
     }
     else if (stringInput1 == "4")
@@ -95,7 +104,11 @@ void GameMenu::mainMenu()
       GameMenu::helpFunction1();
     } else {
       cout << endl;
+<<<<<<< HEAD
       cout << "Invalid Input! You are not allowed to enter " << "''" << stringInput1 << "'', please try one of the inputs listed above" << endl;
+=======
+      cout << "Invalid Input! You are not allowed to enter " << "'" << stringInput1 << "', please try one of the inputs listed above" << endl;
+>>>>>>> fb74e5bc7a22004edf5fe9394714696b8da970fc
     }
   }
   while(endLoop == false);
@@ -175,7 +188,11 @@ void GameMenu::continueGameplay() {
       GameMenu::helpFunction2();
     } else {
       cout << endl;
+<<<<<<< HEAD
       cout << "Invalid Input! You are not allowed to enter " << "''" << stringInput2 << "'', please try one of the inputs listed above" << endl;
+=======
+      cout << "Invalid Input! You are not allowed to enter " << "'" << stringInput2 << "', please try one of the inputs listed above" << endl;
+>>>>>>> fb74e5bc7a22004edf5fe9394714696b8da970fc
       cout << endl;
     }
 
@@ -188,7 +205,10 @@ void GameMenu::loadGame() {
 }
 
 void GameMenu::studentInfo() {
+<<<<<<< HEAD
     cout << endl;
+=======
+>>>>>>> fb74e5bc7a22004edf5fe9394714696b8da970fc
     cout << "Name: George Korovinis" << endl;
     cout << "Student ID: s3658218" << endl;
     cout << "Email: s3658218@student.rmit.edu.au\n" << endl;
@@ -222,9 +242,15 @@ void GameMenu::placeTileOntoBoard() {
   p.updateScore();
 }
 
+<<<<<<< HEAD
 
 void GameMenu::replaceTileInHand() {
   cout << "IMPLEMENT, REPLACE TILE" << endl;
+=======
+void GameMenu::replaceTileInHand() {
+  cout << "REPLACING TILE IN HAND" << endl;
+  cout << "~~~~~~~~~~~~~~~~~~~~~~" << endl;
+>>>>>>> fb74e5bc7a22004edf5fe9394714696b8da970fc
 }
 
 void GameMenu::saveCurrentGame() {
@@ -244,6 +270,15 @@ void GameMenu::endTurn() {
   cout << endl;
 }
 
+<<<<<<< HEAD
+=======
+void GameMenu::endTurn() {
+  p.switchPlayer();
+  cout << "Current Players turn ending!" << endl;
+  cout << endl;
+}
+
+>>>>>>> fb74e5bc7a22004edf5fe9394714696b8da970fc
 void GameMenu::helpFunction2() {
   cout << endl;
   cout << "------------" << endl;
@@ -251,6 +286,7 @@ void GameMenu::helpFunction2() {
   cout << "You may execute the following commands: 1, 2, 3, 4, 5, ^D and help" << endl;
   cout << endl;
 }
+<<<<<<< HEAD
 
 void GameMenu::printList(Node *n){
    int test=0;
@@ -278,3 +314,6 @@ void GameMenu::printArray(Node* n){
    }
    std::cout << std::endl;
 }
+=======
+//:)
+>>>>>>> fb74e5bc7a22004edf5fe9394714696b8da970fc

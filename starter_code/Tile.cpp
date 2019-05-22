@@ -21,7 +21,11 @@ void Tile::setShape(Shape shape) {
     Tile::shape = shape;
 }
 
+<<<<<<< HEAD
 void Tile::createTiles(Tile tiles[72]){
+=======
+void TileFunction::createTiles(Tile tiles[72]){
+>>>>>>> fb74e5bc7a22004edf5fe9394714696b8da970fc
     int currentTile = 0;
     for (int i = 0; i < 6; i++){
         for (int j = 1; j < 7; j++){
@@ -50,3 +54,14 @@ void Tile::createTiles(Tile tiles[72]){
         }
     }
 }
+<<<<<<< HEAD
+=======
+void TileFunction::printTileBag(Tile tileBag[72]){
+    for (int i = 0; i < 72; i++){
+        std::cout << tileBag[i].colour << tileBag[i].shape << std::endl;
+        if ((i + 1)% 12 == 0){
+            std::cout << std::endl;
+        }
+    }
+}
+>>>>>>> fb74e5bc7a22004edf5fe9394714696b8da970fc

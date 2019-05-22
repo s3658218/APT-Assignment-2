@@ -4,8 +4,11 @@
 
 class GameMenu {
 public:
+<<<<<<< HEAD
 
   Node* z;
+=======
+>>>>>>> fb74e5bc7a22004edf5fe9394714696b8da970fc
   void mainMenu();
   void newGame();
   void continueGameplay();
@@ -20,11 +23,14 @@ public:
   void saveCurrentGame();
   void exitTheProgram();
   void endTurn();
+<<<<<<< HEAD
 
   void printList(Node *n);
   void printArray(Node* n);
 
 
+=======
+>>>>>>> fb74e5bc7a22004edf5fe9394714696b8da970fc
 };
 
 #endif
