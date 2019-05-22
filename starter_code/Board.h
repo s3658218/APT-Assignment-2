@@ -1,7 +1,13 @@
 #ifndef BOARD_H
 #define BOARD_H
 
-void displayBoard();
-void testBoard();
+
+class Board {
+public:
+  void testBoard();
+  void displayBoard();
+};
+
 
 #endif
+//:)
