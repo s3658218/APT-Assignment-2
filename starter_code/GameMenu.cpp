@@ -19,9 +19,9 @@ bool endGameplay;
 bool currentGame;
 bool playerTurn;
 bool nodeCheck;
+int replaceIndex;
 
 Player p;
-
 Board b;
 Tile t;
 Randomiser r;
@@ -141,7 +141,6 @@ do {
   cout << "2: Replace a tile in your hand" << endl;
   cout << "3: Save the game to a file" << endl;
   cout << "4: Quit the game" << endl;
-  cout << "5: End Turn" << endl;
   cout << "Enter Input: " << endl;
   cin >> stringInput2;
 
@@ -165,16 +164,16 @@ do {
    {
     GameMenu::exitTheProgram();
   }
-  else if(stringInput2 == "5")
-  {
-    GameMenu::endTurn();
-  }
+  //else if(stringInput2 == "5")
+  //{
+  //  GameMenu::endTurn();
+//  }
   else if(stringInput2 == "help")
   {
     GameMenu::helpFunction2();
   } else {
     cout << endl;
-    cout << "Invalid Input! You are not allowed to enter " << "''" << stringInput2 << "'', please try one of the inputs listed above" << endl;
+    cout << "Invalid Input! You are not allowed to enter " << "'" << stringInput2 << "', type help to get a list of all the valid inputs" << endl;
     cout << endl;
   }
 
@@ -219,11 +218,16 @@ cout << endl;
 void GameMenu::placeTileOntoBoard() {
 b.testBoard();
 p.updateScore();
+GameMenu::checkForEndTurn();
 }
 
 
 void GameMenu::replaceTileInHand() {
-cout << "IMPLEMENT, REPLACE TILE" << endl;
+  cout << "What is the index of the tile you wish to replace?" << endl;
+  cin >> replaceIndex;
+  cout << "Replacing the tile at position: " << replaceIndex << endl;
+  //l.replaceTile(l.hand, replaceIndex, l.bag);
+
 }
 
 void GameMenu::saveCurrentGame() {
@@ -237,17 +241,17 @@ endGameplay = true;
 exit(0);
 }
 
-void GameMenu::endTurn() {
-p.switchPlayer();
-cout << "Current Players turn ending!" << endl;
-cout << endl;
-}
+//void GameMenu::endTurn() {
+//p.switchPlayer();
+//cout << "Current Players turn ending!" << endl;
+//cout << endl;
+//}
 
 void GameMenu::helpFunction2() {
 cout << endl;
 cout << "------------" << endl;
 cout << "Help Display" << endl;
-cout << "You may execute the following commands: 1, 2, 3, 4, 5, ^D and help" << endl;
+cout << "You may execute the following commands: 1, 2, 3, 4, ^D and help" << endl;
 cout << endl;
 }
 
@@ -276,4 +280,19 @@ void GameMenu::printArray(Node* n){
  n = n -> next;
  }
  std::cout << std::endl;
+}
+
+void GameMenu::checkForEndTurn() {
+  string response;
+  cout << "Would you like to place another tile? (y/n)" << endl;
+  cin >> response;
+  if (response == "y") {
+    cout << "Okay, your turn continues and you may place down another tile" << endl;
+  } else if (response == "n") {
+    cout << "Very well, your turn is now over" << endl;
+    cout << endl;
+    p.switchPlayer();
+  } else {
+    cout << "Invalid Input!, you are not allowed to enter " << response << ", please respond with either y or n" << endl;
+  }
 }
