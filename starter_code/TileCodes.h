@@ -10,6 +10,7 @@
 #define BLUE   'B'
 #define PURPLE 'P'
 
+
 // Shapes
 #define CIRCLE    1
 #define STAR_4    2

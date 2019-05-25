@@ -1,11 +1,9 @@
 #include <iostream>
+#include <string>
 #include "GameMenu.h"
-#include "Board.h"
-#include "Player.h"
-#include "Tile.h"
-#include "Randomiser.h"
-#include "LinkedList.h"
-#include "Node.h"
+// stuff to add:
+// scoring function, checking around current tile, testArray[i+1][j] check etc, do testArray[]
+
 
 using std::string;
 using std::cout;
@@ -20,12 +18,99 @@ bool currentGame;
 bool playerTurn;
 bool nodeCheck;
 int replaceIndex;
+string tile2d;
+char x;
+int y;
+int sizeOfMaze = 24;
+int tileType;
+int tileLocationX;
+int tileLocationY;
+
 
 Player p;
-Board b;
+// Board b;
 Tile t;
 Randomiser r;
 LinkedList l;
+
+Tile nullTile = Tile (' ',0);
+Tile testArray[26][26];
+
+string letters[26] = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", 
+                     "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
+void initiliaseBoard(){
+    for (int i = 0; i < 26; i++){
+    for (int j = 0; j < 26; j++){
+    testArray[i][j] = nullTile;
+    }
+
+  }
+}
+
+void displayBoard() {
+
+  cout << "    0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25" << endl;
+  for (unsigned int i = 0; i < 26; i++) {
+    cout << letters[i] << " ";
+    //cout << endl;
+      for (unsigned int j = 0; j < 26; j++) {
+        if (j == 0){
+          cout << "|" << testArray[i][j].colour;
+        }else{
+          cout << testArray[i][j].colour;
+        }
+          if (testArray[i][j].shape == 0){
+            cout << " " << "|";
+          } else {
+            cout << testArray[i][j].shape << "|";
+          }
+      }
+      cout << endl;
+  }
+  cout << endl;
+}
+
+
+void GameMenu::testBoard() {
+  tileCheck = false;
+  Node* temp;
+  do{ 
+  cout << "Which colour would you like to place" << endl;
+  cin >> x;
+  cout << "Which shape would you like to place" << endl;
+  cin >> y;
+  Tile* tmpTile = new Tile(x, y);
+  if (p.currentPlayer == p.player1){
+    temp = l.p1Head;
+   tileCheck = l.tileComparePlace(temp, tmpTile, tileCheck);
+  }else if (p.currentPlayer == p.player2){
+    temp = l.p2Head;
+    tileCheck = l.tileComparePlace(temp, tmpTile,tileCheck);
+  }
+}while (tileCheck != true);
+Tile placeTile = Tile (x,y);
+  cout << "Okay! and what is the X coordinate? (starts at 0, so 0-23)" << endl;
+  cin >> tileLocationX;
+  tileLocationX = tileLocationX;
+  cout << "And what is the Y cooardinate? (starts at 0, so 0-23)" << endl;
+  cin >> tileLocationY;
+  tileLocationY = tileLocationY;
+  cout << "Placing " << tileType << " at X: " << tileLocationX << " Y: " << tileLocationY << endl;
+
+  testArray[tileLocationY][tileLocationX] = placeTile;
+
+  //cout << "AFTER RESULTS" << endl << endl;
+
+  //for (unsigned int i = 0; i < 6; i++) {
+    //cout << endl;
+      //for (unsigned int j = 0; j < 6; j++) {
+          //cout << "|" <<testArray[i][j] << "|";
+      //}
+  //}
+  cout << endl;
+  index++;
+  handSize--;
+}
 
 void GameMenu::mainMenu()
 {
@@ -115,7 +200,7 @@ cout << endl;
 p.currentPlayer = p.player1;
 cout << "Let's Play!" << endl;
 cout << endl;
-
+initiliaseBoard();
 GameMenu::continueGameplay();
 }
 
@@ -126,15 +211,14 @@ do {
   cout << "Score for " << p.player1 << ": " << p.player1Score << endl;
   cout << "Score for " << p.player2 << ": " << p.player2Score << endl;
   cout << "BOARD" << endl;
-  b.displayBoard();
+  displayBoard();
   cout << endl;
   cout << "Your hand is: ";
   if (p.currentPlayer == p.player1) {
-    z = l.p1Head;
+    printArray(l.p1Head);
   } else {
-    z = l.p2Head;
+    printArray(l.p2Head);
   }
-  printArray(z);
   cout << endl;
   cout << "Options" << endl;
   cout << "1: Place a tile onto the board" << endl;
@@ -178,8 +262,8 @@ do {
   }
 
 } while(endGameplay == false);
-
 }
+
 
 void GameMenu::loadGame() {
 cout << "Enter the filename from which load a game" << endl;
@@ -216,18 +300,31 @@ cout << endl;
 }
 
 void GameMenu::placeTileOntoBoard() {
-b.testBoard();
+testBoard();
 p.updateScore();
 GameMenu::checkForEndTurn();
 }
 
 
 void GameMenu::replaceTileInHand() {
-  cout << "What is the index of the tile you wish to replace?" << endl;
-  cin >> replaceIndex;
-  cout << "Replacing the tile at position: " << replaceIndex << endl;
-  //l.replaceTile(l.hand, replaceIndex, l.bag);
-
+tileCheck = false;
+  do{ 
+  cout << "Which colour would you like to replace" << endl;
+  cin >> x;
+  cout << "Which shape would you like to replace" << endl;
+  cin >> y;
+  Tile* tmpTile = new Tile(x, y);
+  if (p.currentPlayer == p.player1){
+    Node* n = l.p1Head;
+   tileCheck = l.tileCompareReplace(n, tmpTile, tileCheck);
+  }else if (p.currentPlayer == p.player2){
+    Node* n = l.p2Head;
+    tileCheck = l.tileCompareReplace(n, tmpTile,tileCheck);
+  }
+}while (tileCheck != true);
+index = 0;
+handSize = 6;
+p.switchPlayer();
 }
 
 void GameMenu::saveCurrentGame() {
@@ -266,24 +363,38 @@ std::cout << test << std::endl;
 }
 
 void GameMenu::printArray(Node* n){
+  Node* temp = n;
  //creating an array just for this hand
  Tile hand[6];
  //creating a pointer array to store the node value
  Tile* handptr[6];
- for (int i = 0; i < 6; i++){
+ for (int i = 0; i < handSize; i++){
  //storing node value into pointer array
- handptr[i] = n -> tile;
+ handptr[i] = temp -> tile;
  //storing dereferencing the pointer and storing it into a temp hand
  hand[i] = *handptr[i];
  std::cout << hand[i].colour << hand[i].shape << " ";
  //going to the next node
- n = n -> next;
+ temp = temp -> next;
  }
  std::cout << std::endl;
 }
 
 void GameMenu::checkForEndTurn() {
   string response;
+   if (handSize == 0){
+    for (int i = 0; i < index; i++){
+      if (p.currentPlayer == p.player1){
+        l.deal(l.p1Head);
+      } else {
+        l.deal(l.p2Head);
+      }
+    }
+    index = 0;
+    handSize = 6;
+    cout << p.currentPlayer << " " << ", your hand is empty!" << endl;
+    p.switchPlayer();
+   } else {
   cout << "Would you like to place another tile? (y/n)" << endl;
   cin >> response;
   if (response == "y") {
@@ -291,8 +402,19 @@ void GameMenu::checkForEndTurn() {
   } else if (response == "n") {
     cout << "Very well, your turn is now over" << endl;
     cout << endl;
+        for (int i = 0; i < index; i++){
+      if (p.currentPlayer == p.player1){
+        l.deal(l.p1Head);
+      } else {
+        l.deal(l.p2Head);
+      }
+    }
+    index = 0;
+    handSize = 6;
     p.switchPlayer();
   } else {
     cout << "Invalid Input!, you are not allowed to enter " << response << ", please respond with either y or n" << endl;
   }
+  }
 }
+

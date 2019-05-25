@@ -1,5 +1,5 @@
-#ifndef BOARD_H
-#define BOARD_H
+#ifndef ASSIGN2_BOARD_H
+#define ASSIGN2_BOARD_H
 
 
 class Board {
