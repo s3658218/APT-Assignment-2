@@ -55,8 +55,8 @@ void displayBoard() {
 
 
 void GameMenu::testBoard() {
-  //do{ 
-  cout << tileCheck << endl;
+  tileCheck = false;
+  do{ 
   cout << "Which colour would you like to place" << endl;
   cin >> x;
   cout << "Which shape would you like to place" << endl;
@@ -64,12 +64,12 @@ void GameMenu::testBoard() {
   Tile* tmpTile = new Tile(x, y);
   if (p.currentPlayer == p.player1){
     Node* n = l.p1Head;
-   l.tileComparePlace(n, tmpTile);
+   tileCheck = l.tileComparePlace(n, tmpTile, tileCheck);
   }else if (p.currentPlayer == p.player2){
     Node* n = l.p1Head;
-    l.tileComparePlace(n, tmpTile);
+    tileCheck = l.tileComparePlace(n, tmpTile,tileCheck);
   }
-// }while (tileCheck != true);
+}while (tileCheck != true);
   string placeholder1 = string(1, x);
   string placeholder2;
   placeholder2 = std::to_string(y);
@@ -293,11 +293,21 @@ GameMenu::checkForEndTurn();
 
 
 void GameMenu::replaceTileInHand() {
-  cout << "What is the index of the tile you wish to replace?" << endl;
-  cin >> replaceIndex;
-  cout << "Replacing the tile at position: " << replaceIndex << endl;
-  //l.replaceTile(l.hand, replaceIndex, l.bag);
-
+tileCheck = false;
+  do{ 
+  cout << "Which colour would you like to replace" << endl;
+  cin >> x;
+  cout << "Which shape would you like to replace" << endl;
+  cin >> y;
+  Tile* tmpTile = new Tile(x, y);
+  if (p.currentPlayer == p.player1){
+    Node* n = l.p1Head;
+   tileCheck = l.tileCompareReplace(n, tmpTile, tileCheck);
+  }else if (p.currentPlayer == p.player2){
+    Node* n = l.p2Head;
+    tileCheck = l.tileCompareReplace(n, tmpTile,tileCheck);
+  }
+}while (tileCheck != true);
 }
 
 void GameMenu::saveCurrentGame() {

@@ -10,7 +10,7 @@
 
 class GameMenu {
 public:
-bool tileCheck = false;
+  bool tileCheck = false;
   void mainMenu();
   void newGame();
   void continueGameplay();
