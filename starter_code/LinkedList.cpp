@@ -24,7 +24,8 @@ if (n -> next != nullptr){
    free(temp);
 }else{
 //else it just sets the head as null
-   free(n);
+   n = nullptr;
+   free(temp);
  }
 }
 
@@ -101,14 +102,12 @@ Node* LinkedList::placeTile(Node* hand, int index){
    Node* temp = hand;
    if (index == 0){
       removeNode(hand);
-      deal(hand);
       return hand;
    } else {
       for (int i = 0; i < index; i++){
       temp = temp -> next;
    }
    removeNode(temp);
-   deal(hand);
    return hand;
    }
 
@@ -126,6 +125,7 @@ bool LinkedList::tileComparePlace(Node* n, Tile* tile, bool check){
          placeTile(n, index);
          counter = 8;
          check = true;
+         delete tile;
          return check;
       } else {
          if(temp -> next != nullptr){
@@ -154,6 +154,7 @@ bool LinkedList::tileCompareReplace(Node* n, Tile* tile, bool check){
          replaceTile(n, index, headBag);
          counter = 8;
          check = true;
+         delete tile;
          return check;
       } else {
          if(temp -> next != nullptr){

@@ -1,6 +1,9 @@
 #include <iostream>
 #include <string>
 #include "GameMenu.h"
+// stuff to add:
+// scoring function, checking around current tile, testArray[i+1][j] check etc, do testArray[]
+
 
 using std::string;
 using std::cout;
@@ -30,23 +33,37 @@ Tile t;
 Randomiser r;
 LinkedList l;
 
-string testArray[6][6] = {  {"  ", "  ", "  ", "  ", "  ", "  "},
-                            {"  ", "  ", "  ", "  ", "  ", "  "},
-                            {"  ", "  ", "  ", "  ", "  ", "  "},
-                            {"  ", "  ", "  ", "  ", "  ", "  "},
-                            {"  ", "  ", "  ", "  ", "  ", "  "},
-                            {"  ", "  ", "  ", "  ", "  ", "  "}, };
+Tile nullTile = Tile (' ',0);
+Tile testArray[26][26];
 
+string letters[26] = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", 
+                     "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
+void initiliaseBoard(){
+    for (int i = 0; i < 26; i++){
+    for (int j = 0; j < 26; j++){
+    testArray[i][j] = nullTile;
+    }
 
-string letters[6] = {"A", "B", "C", "D", "E", "F"};
+  }
+}
 
 void displayBoard() {
-  cout << "   0   1   2   3   4   5" << endl;
-  for (unsigned int i = 0; i < 6; i++) {
+
+  cout << "    0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25" << endl;
+  for (unsigned int i = 0; i < 26; i++) {
     cout << letters[i] << " ";
     //cout << endl;
-      for (unsigned int j = 0; j < 6; j++) {
-          cout << "|" <<testArray[i][j] << "|";
+      for (unsigned int j = 0; j < 26; j++) {
+        if (j == 0){
+          cout << "|" << testArray[i][j].colour;
+        }else{
+          cout << testArray[i][j].colour;
+        }
+          if (testArray[i][j].shape == 0){
+            cout << " " << "|";
+          } else {
+            cout << testArray[i][j].shape << "|";
+          }
       }
       cout << endl;
   }
@@ -56,6 +73,7 @@ void displayBoard() {
 
 void GameMenu::testBoard() {
   tileCheck = false;
+  Node* temp;
   do{ 
   cout << "Which colour would you like to place" << endl;
   cin >> x;
@@ -63,20 +81,14 @@ void GameMenu::testBoard() {
   cin >> y;
   Tile* tmpTile = new Tile(x, y);
   if (p.currentPlayer == p.player1){
-    Node* n = l.p1Head;
-   tileCheck = l.tileComparePlace(n, tmpTile, tileCheck);
+    temp = l.p1Head;
+   tileCheck = l.tileComparePlace(temp, tmpTile, tileCheck);
   }else if (p.currentPlayer == p.player2){
-    Node* n = l.p1Head;
-    tileCheck = l.tileComparePlace(n, tmpTile,tileCheck);
+    temp = l.p2Head;
+    tileCheck = l.tileComparePlace(temp, tmpTile,tileCheck);
   }
 }while (tileCheck != true);
-  string placeholder1 = string(1, x);
-  string placeholder2;
-  placeholder2 = std::to_string(y);
-  cout << placeholder1 << endl;
-  cout << placeholder2 << endl;
-  tile2d =  placeholder1 + placeholder2;
-
+Tile placeTile = Tile (x,y);
   cout << "Okay! and what is the X coordinate? (starts at 0, so 0-23)" << endl;
   cin >> tileLocationX;
   tileLocationX = tileLocationX;
@@ -85,7 +97,7 @@ void GameMenu::testBoard() {
   tileLocationY = tileLocationY;
   cout << "Placing " << tileType << " at X: " << tileLocationX << " Y: " << tileLocationY << endl;
 
-  testArray[tileLocationY][tileLocationX] = tile2d;
+  testArray[tileLocationY][tileLocationX] = placeTile;
 
   //cout << "AFTER RESULTS" << endl << endl;
 
@@ -96,6 +108,8 @@ void GameMenu::testBoard() {
       //}
   //}
   cout << endl;
+  index++;
+  handSize--;
 }
 
 void GameMenu::mainMenu()
@@ -186,7 +200,7 @@ cout << endl;
 p.currentPlayer = p.player1;
 cout << "Let's Play!" << endl;
 cout << endl;
-
+initiliaseBoard();
 GameMenu::continueGameplay();
 }
 
@@ -248,8 +262,8 @@ do {
   }
 
 } while(endGameplay == false);
-
 }
+
 
 void GameMenu::loadGame() {
 cout << "Enter the filename from which load a game" << endl;
@@ -308,6 +322,9 @@ tileCheck = false;
     tileCheck = l.tileCompareReplace(n, tmpTile,tileCheck);
   }
 }while (tileCheck != true);
+index = 0;
+handSize = 6;
+p.switchPlayer();
 }
 
 void GameMenu::saveCurrentGame() {
@@ -351,7 +368,7 @@ void GameMenu::printArray(Node* n){
  Tile hand[6];
  //creating a pointer array to store the node value
  Tile* handptr[6];
- for (int i = 0; i < 6; i++){
+ for (int i = 0; i < handSize; i++){
  //storing node value into pointer array
  handptr[i] = temp -> tile;
  //storing dereferencing the pointer and storing it into a temp hand
@@ -365,6 +382,19 @@ void GameMenu::printArray(Node* n){
 
 void GameMenu::checkForEndTurn() {
   string response;
+   if (handSize == 0){
+    for (int i = 0; i < index; i++){
+      if (p.currentPlayer == p.player1){
+        l.deal(l.p1Head);
+      } else {
+        l.deal(l.p2Head);
+      }
+    }
+    index = 0;
+    handSize = 6;
+    cout << p.currentPlayer << " " << ", your hand is empty!" << endl;
+    p.switchPlayer();
+   } else {
   cout << "Would you like to place another tile? (y/n)" << endl;
   cin >> response;
   if (response == "y") {
@@ -372,9 +402,19 @@ void GameMenu::checkForEndTurn() {
   } else if (response == "n") {
     cout << "Very well, your turn is now over" << endl;
     cout << endl;
+        for (int i = 0; i < index; i++){
+      if (p.currentPlayer == p.player1){
+        l.deal(l.p1Head);
+      } else {
+        l.deal(l.p2Head);
+      }
+    }
+    index = 0;
+    handSize = 6;
     p.switchPlayer();
   } else {
     cout << "Invalid Input!, you are not allowed to enter " << response << ", please respond with either y or n" << endl;
+  }
   }
 }
 

@@ -11,6 +11,8 @@
 class GameMenu {
 public:
   bool tileCheck = false;
+  int index = 0;
+  int handSize = 6;
   void mainMenu();
   void newGame();
   void continueGameplay();
