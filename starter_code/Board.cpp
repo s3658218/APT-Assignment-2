@@ -3,16 +3,17 @@
 #include "Board.h"
 #include "LinkedList.h"
 #include "GameMenu.h"
+#include "Player.h"
 
 #include <iostream>
 #include <vector>
+#include <string>
 
 using std::cout;
 using std::cin;
 using std::endl;
 using std::string;
 using std::vector;
-LinkedList ll;
 GameMenu gm;
 
 string tile2d;
@@ -50,21 +51,26 @@ void Board::displayBoard() {
 
 
 void Board::testBoard() {
-  //while (tileCheck != true){
+  do{
+  gm.l.headBag = nullptr;
+  cout << gm.l.headBag -> tile << endl; 
   cout << "Which colour would you like to place" << endl;
   cin >> x;
   cout << "Which shape would you like to place" << endl;
   cin >> y;
-  //Tile* tmpTile = new Tile(x, y);
-  //ll.tileComparePlace(gm.z, tmpTile, tileCheck);
-  string placeholderXD;
+  Tile* tmpTile = new Tile(x, y);
+  if (gm.p.currentPlayer == gm.p.player1){
+   gm.l.tileComparePlace(gm.p.currentPlayer, tmpTile, tileCheck);
+  }else if (gm.p.currentPlayer == gm.p.player2){
+    gm.l.tileComparePlace(gm.p.currentPlayer, tmpTile, tileCheck);
+  }
+}while (tileCheck != true);
   string placeholder1 = string(1, x);
   string placeholder2;
   placeholder2 = std::to_string(y);
-  //cout << placeholder1 << endl;
-  //cout << placeholder2 << endl;
+  cout << placeholder1 << endl;
+  cout << placeholder2 << endl;
   tile2d =  placeholder1 + placeholder2;
-//}
 
   cout << "Okay! and what is the X coordinate? (starts at 0, so 0-23)" << endl;
   cin >> tileLocationX;

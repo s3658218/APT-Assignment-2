@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include "Player.h"
 
 using std::string;

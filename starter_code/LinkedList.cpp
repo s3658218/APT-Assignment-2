@@ -1,11 +1,22 @@
+
 #include "LinkedList.h"
 #include "Tile.h"
 #include "TileCodes.h"
+#include "Player.h"
+#include "GameMenu.h"
+#include <string>
 #include <iostream>
 
+
+GameMenu gm;
+using std::string;
+
 void removeNode(Node* n){
+Node* temp = nullptr;
 // setting a location to the next spot in the linkedlist
-Node* temp = n -> next;
+if ( n -> next != nullptr){
+temp = n -> next;
+}
 //while the next position isn't a nullptr, make the head the next position
 if (n -> next != nullptr){
    n -> tile = temp -> tile;
@@ -13,8 +24,7 @@ if (n -> next != nullptr){
    free(temp);
 }else{
 //else it just sets the head as null
-   n = nullptr;
-   free(temp);
+   free(n);
  }
 }
 
@@ -104,19 +114,19 @@ Node* LinkedList::placeTile(Node* hand, int index){
 
 }
 
-void LinkedList::tileComparePlace(Node* n, Tile* tile, bool check){
+void LinkedList::tileComparePlace(Node* n, Tile* tile){
    int index = 0;
    int counter = 0;
    Node* temp = n;
-   while (counter <= 6){
    Tile tempTile = *tile;
+   while (counter <= 6){
    Tile* nodeTileptr = temp -> tile;
    Tile nodeTile = *nodeTileptr;
       if (tempTile.colour == nodeTile.colour && tempTile.shape == nodeTile.shape){
          std::cout << "Placed tile" <<  std::endl;
          placeTile(n, index);
          counter = 8;
-         check = true;
+         gm.tileCheck = true;
       } else {
          if(temp -> next != nullptr){
          temp = temp -> next;
@@ -125,35 +135,40 @@ void LinkedList::tileComparePlace(Node* n, Tile* tile, bool check){
          index++;
       }
    }
-  if (counter == 7){ std::cout << "Enter a valid tile" << std::endl;
-   delete tile;
+  if (counter == 6){ std::cout << "Enter a valid tile" << std::endl;
+  delete tile;
   }
 }
-void LinkedList::tileCompareReplace(Node* n, Tile* tile, bool check){
-   int index = 0;
-   int counter = 0;
-   Node* temp = n;
-   while (counter <= 6){
-   Tile tempTile = *tile;
-   Tile* nodeTileptr = temp -> tile;
-   Tile nodeTile = *nodeTileptr;
-      if (tempTile.colour == nodeTile.colour && tempTile.shape == nodeTile.shape){
-         std::cout << "Replaced tile" <<  std::endl;
-         replaceTile(n, index, headBag);
-         counter = 8;
-         check = true;
-      } else {
-         if(temp -> next != nullptr){
-         temp = temp -> next;
-         }
-         counter++;
-         index++;
-      }
-   }
-  if (counter == 7){ std::cout << "Enter a valid tile" << std::endl;
-   delete tile;
-  }
-}
+// void LinkedList::tileCompareReplace(string player, Tile* tile, bool check){
+//    int index = 0;
+//    int counter = 0;
+//    Node* temp = nullptr;
+//    if (player == pp.player1){
+//       temp = p1Head;
+//    } else if (player == pp.player2){
+//       temp = p2Head;
+//    }
+//    while (counter <= 6){
+//    Tile tempTile = *tile;
+//    Tile* nodeTileptr = temp -> tile;
+//    Tile nodeTile = *nodeTileptr;
+//       if (tempTile.colour == nodeTile.colour && tempTile.shape == nodeTile.shape){
+//          std::cout << "Replaced tile" <<  std::endl;
+//          replaceTile(temp, index, headBag);
+//          counter = 8;
+//          check = true;
+//       } else {
+//          if(temp -> next != nullptr){
+//          temp = temp -> next;
+//          }
+//          counter++;
+//          index++;
+//       }
+//    }
+//   if (counter == 7){ std::cout << "Enter a valid tile" << std::endl;
+//    delete tile;
+//   }
+// }
 
 LinkedList::LinkedList() {
    headBag = nullptr;
@@ -170,3 +185,4 @@ LinkedList::~LinkedList() {
         delete temp;
     }
 }
+

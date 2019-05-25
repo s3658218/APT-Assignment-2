@@ -1,11 +1,6 @@
 #include <iostream>
+#include <string>
 #include "GameMenu.h"
-#include "Board.h"
-#include "Player.h"
-#include "Tile.h"
-#include "Randomiser.h"
-#include "LinkedList.h"
-#include "Node.h"
 
 using std::string;
 using std::cout;
@@ -20,12 +15,88 @@ bool currentGame;
 bool playerTurn;
 bool nodeCheck;
 int replaceIndex;
+string tile2d;
+char x;
+int y;
+int sizeOfMaze = 24;
+int tileType;
+int tileLocationX;
+int tileLocationY;
+
 
 Player p;
-Board b;
+// Board b;
 Tile t;
 Randomiser r;
 LinkedList l;
+
+string testArray[6][6] = {  {"  ", "  ", "  ", "  ", "  ", "  "},
+                            {"  ", "  ", "  ", "  ", "  ", "  "},
+                            {"  ", "  ", "  ", "  ", "  ", "  "},
+                            {"  ", "  ", "  ", "  ", "  ", "  "},
+                            {"  ", "  ", "  ", "  ", "  ", "  "},
+                            {"  ", "  ", "  ", "  ", "  ", "  "}, };
+
+
+string letters[6] = {"A", "B", "C", "D", "E", "F"};
+
+void displayBoard() {
+  cout << "   0   1   2   3   4   5" << endl;
+  for (unsigned int i = 0; i < 6; i++) {
+    cout << letters[i] << " ";
+    //cout << endl;
+      for (unsigned int j = 0; j < 6; j++) {
+          cout << "|" <<testArray[i][j] << "|";
+      }
+      cout << endl;
+  }
+  cout << endl;
+}
+
+
+void GameMenu::testBoard() {
+  //do{ 
+  cout << tileCheck << endl;
+  cout << "Which colour would you like to place" << endl;
+  cin >> x;
+  cout << "Which shape would you like to place" << endl;
+  cin >> y;
+  Tile* tmpTile = new Tile(x, y);
+  if (p.currentPlayer == p.player1){
+    Node* n = l.p1Head;
+   l.tileComparePlace(n, tmpTile);
+  }else if (p.currentPlayer == p.player2){
+    Node* n = l.p1Head;
+    l.tileComparePlace(n, tmpTile);
+  }
+// }while (tileCheck != true);
+  string placeholder1 = string(1, x);
+  string placeholder2;
+  placeholder2 = std::to_string(y);
+  cout << placeholder1 << endl;
+  cout << placeholder2 << endl;
+  tile2d =  placeholder1 + placeholder2;
+
+  cout << "Okay! and what is the X coordinate? (starts at 0, so 0-23)" << endl;
+  cin >> tileLocationX;
+  tileLocationX = tileLocationX;
+  cout << "And what is the Y cooardinate? (starts at 0, so 0-23)" << endl;
+  cin >> tileLocationY;
+  tileLocationY = tileLocationY;
+  cout << "Placing " << tileType << " at X: " << tileLocationX << " Y: " << tileLocationY << endl;
+
+  testArray[tileLocationY][tileLocationX] = tile2d;
+
+  //cout << "AFTER RESULTS" << endl << endl;
+
+  //for (unsigned int i = 0; i < 6; i++) {
+    //cout << endl;
+      //for (unsigned int j = 0; j < 6; j++) {
+          //cout << "|" <<testArray[i][j] << "|";
+      //}
+  //}
+  cout << endl;
+}
 
 void GameMenu::mainMenu()
 {
@@ -126,15 +197,14 @@ do {
   cout << "Score for " << p.player1 << ": " << p.player1Score << endl;
   cout << "Score for " << p.player2 << ": " << p.player2Score << endl;
   cout << "BOARD" << endl;
-  b.displayBoard();
+  displayBoard();
   cout << endl;
   cout << "Your hand is: ";
   if (p.currentPlayer == p.player1) {
-    z = l.p1Head;
+    printArray(l.p1Head);
   } else {
-    z = l.p2Head;
+    printArray(l.p2Head);
   }
-  printArray(z);
   cout << endl;
   cout << "Options" << endl;
   cout << "1: Place a tile onto the board" << endl;
@@ -216,7 +286,7 @@ cout << endl;
 }
 
 void GameMenu::placeTileOntoBoard() {
-b.testBoard();
+testBoard();
 p.updateScore();
 GameMenu::checkForEndTurn();
 }
@@ -266,18 +336,19 @@ std::cout << test << std::endl;
 }
 
 void GameMenu::printArray(Node* n){
+  Node* temp = n;
  //creating an array just for this hand
  Tile hand[6];
  //creating a pointer array to store the node value
  Tile* handptr[6];
  for (int i = 0; i < 6; i++){
  //storing node value into pointer array
- handptr[i] = n -> tile;
+ handptr[i] = temp -> tile;
  //storing dereferencing the pointer and storing it into a temp hand
  hand[i] = *handptr[i];
  std::cout << hand[i].colour << hand[i].shape << " ";
  //going to the next node
- n = n -> next;
+ temp = temp -> next;
  }
  std::cout << std::endl;
 }
@@ -296,3 +367,4 @@ void GameMenu::checkForEndTurn() {
     cout << "Invalid Input!, you are not allowed to enter " << response << ", please respond with either y or n" << endl;
   }
 }
+
