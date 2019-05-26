@@ -118,10 +118,10 @@ void GameMenu::testBoard() {
         || placeTile.shape == testArray[tileLocationX][tileLocationY + 1].shape
         || placeTile.colour == testArray[tileLocationX][tileLocationY - 1].colour
         || placeTile.shape == testArray[tileLocationX][tileLocationY - 1].shape) {
-        cout << "Valid to place! :D" << endl;
+        cout << "Valid to place!" << endl;
         isValid = true;
     } else {
-      cout << "Invalid to place!" << endl;
+      cout << "Invalid to place!, try again" << endl;
       tileCheck = false;
 
     }
@@ -255,11 +255,11 @@ do {
     printArray(l.p2Head);
   }
   cout << endl;
-  cout << "Options" << endl;
-  cout << "1: Place a tile onto the board" << endl;
-  cout << "2: Replace a tile in your hand" << endl;
-  cout << "3: Save the game to a file" << endl;
-  cout << "4: Quit the game" << endl;
+  //cout << "Options" << endl;
+  //cout << "1: Place a tile onto the board" << endl;
+  //cout << "2: Replace a tile in your hand" << endl;
+  //cout << "3: Save the game to a file" << endl;
+  //cout << "4: Quit the game" << endl;
   cout << "Enter Input: " << endl;
   cin >> stringInput2;
 
