@@ -17,6 +17,7 @@ bool endGameplay;
 bool currentGame;
 bool playerTurn;
 bool nodeCheck;
+bool isValid;
 int replaceIndex;
 string tile2d;
 char x;
@@ -25,6 +26,7 @@ int sizeOfMaze = 24;
 int tileType;
 int tileLocationX;
 int tileLocationY;
+int boardCounter;
 
 
 Player p;
@@ -36,7 +38,7 @@ LinkedList l;
 Tile nullTile = Tile (' ',0);
 Tile testArray[26][26];
 
-string letters[26] = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", 
+string letters[26] = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
                      "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
 void initiliaseBoard(){
     for (int i = 0; i < 26; i++){
@@ -73,31 +75,63 @@ void displayBoard() {
 
 void GameMenu::testBoard() {
   tileCheck = false;
+  isValid = false;
   Node* temp;
-  do{ 
-  cout << "Which colour would you like to place" << endl;
-  cin >> x;
-  cout << "Which shape would you like to place" << endl;
-  cin >> y;
-  Tile* tmpTile = new Tile(x, y);
-  if (p.currentPlayer == p.player1){
-    temp = l.p1Head;
-   tileCheck = l.tileComparePlace(temp, tmpTile, tileCheck);
-  }else if (p.currentPlayer == p.player2){
-    temp = l.p2Head;
-    tileCheck = l.tileComparePlace(temp, tmpTile,tileCheck);
-  }
-}while (tileCheck != true);
-Tile placeTile = Tile (x,y);
-  cout << "Okay! and what is the X coordinate? (starts at 0, so 0-23)" << endl;
-  cin >> tileLocationX;
-  tileLocationX = tileLocationX;
-  cout << "And what is the Y cooardinate? (starts at 0, so 0-23)" << endl;
-  cin >> tileLocationY;
-  tileLocationY = tileLocationY;
-  cout << "Placing " << tileType << " at X: " << tileLocationX << " Y: " << tileLocationY << endl;
+  temp = nullptr;
+  Tile placeTile;
+  do{
+    do{
+    //cout << "tileCheck is: " << tileCheck << endl;
+    cout << "Which colour would you like to place" << endl;
+    cin >> x;
+    cout << "Which shape would you like to place" << endl;
+    cin >> y;
+    Tile* tmpTile = new Tile(x, y);
+    if (p.currentPlayer == p.player1){
+      temp = l.p1Head;
+     tileCheck = l.tileComparePlace(temp, tmpTile, tileCheck, handSize);
+    }else if (p.currentPlayer == p.player2){
+      temp = l.p2Head;
+      tileCheck = l.tileComparePlace(temp, tmpTile,tileCheck, handSize);
+    }
+  }while (tileCheck != true);
 
+  placeTile = Tile (x,y);
+    cout << "Okay! and what is the X coordinate? (starts at 0, so 0-25)" << endl;
+    cin >> tileLocationX;
+    tileLocationX = tileLocationX;
+    cout << "And what is the Y cooardinate? (starts at 0, so 0-25)" << endl;
+    cin >> tileLocationY;
+    tileLocationY = tileLocationY;
+
+    if (boardCounter == 0) {
+      isValid = true;
+    }
+
+    if (boardCounter != 0) {
+
+    if (placeTile.colour == testArray[tileLocationX + 1][tileLocationY].colour
+        || placeTile.shape == testArray[tileLocationX + 1][tileLocationY].shape
+        || placeTile.colour == testArray[tileLocationX - 1][tileLocationY].colour
+        || placeTile.shape == testArray[tileLocationX - 1][tileLocationY].shape
+        || placeTile.colour == testArray[tileLocationX][tileLocationY + 1].colour
+        || placeTile.shape == testArray[tileLocationX][tileLocationY + 1].shape
+        || placeTile.colour == testArray[tileLocationX][tileLocationY - 1].colour
+        || placeTile.shape == testArray[tileLocationX][tileLocationY - 1].shape) {
+        cout << "Valid to place! :D" << endl;
+        isValid = true;
+    } else {
+      cout << "Invalid to place!" << endl;
+      tileCheck = false;
+
+    }
+  }
+  } while (isValid == false);
+  boardCounter++;
+  l.placeTile(temp,placeTile,handSize);
   testArray[tileLocationY][tileLocationX] = placeTile;
+
+  //cout << "Placing " << placeTile.colour << placeTile.shape << " at X: " << tileLocationX << " Y: " << tileLocationY << endl;
 
   //cout << "AFTER RESULTS" << endl << endl;
 
@@ -202,6 +236,7 @@ cout << "Let's Play!" << endl;
 cout << endl;
 initiliaseBoard();
 GameMenu::continueGameplay();
+boardCounter = 0;
 }
 
 void GameMenu::continueGameplay() {
@@ -308,7 +343,7 @@ GameMenu::checkForEndTurn();
 
 void GameMenu::replaceTileInHand() {
 tileCheck = false;
-  do{ 
+  do{
   cout << "Which colour would you like to replace" << endl;
   cin >> x;
   cout << "Which shape would you like to replace" << endl;
@@ -417,4 +452,3 @@ void GameMenu::checkForEndTurn() {
   }
   }
 }
-

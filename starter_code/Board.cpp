@@ -52,7 +52,7 @@
 
 // void Board::testBoard() {
 //   do{
-//   cout << gm.l.headBag -> tile << endl; 
+//   cout << gm.l.headBag -> tile << endl;
 //   cout << "Which colour would you like to place" << endl;
 //   cin >> x;
 //   cout << "Which shape would you like to place" << endl;
